@@ -1,0 +1,5 @@
+require('core.cmp').config()
+require('core.cmp').setup()
+require('core.lsp').setup()
+require('core.lualine').setup()
+require('core.notify').setup()
