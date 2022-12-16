@@ -1,8 +1,3 @@
-local M = {}
-
-
-
-M.config = function()
   local status_cmp_ok, cmp = pcall(require, "cmp")
   if not status_cmp_ok then
     return
@@ -11,7 +6,7 @@ M.config = function()
   if not status_luasnip_ok then
     return
   end
-  customsettings.cmp = {
+  cmpsettings = {
         enabled = function()
             local in_prompt = vim.api.nvim_buf_get_option(0, "buftype") == "prompt"
             if in_prompt then
@@ -21,9 +16,6 @@ M.config = function()
             return not (context.in_treesitter_capture "comment" == true or context.in_syntax_group "Comment")
         end,
         window = {
-            -- completion = {
-            --     border = {"🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏"}
-            -- },
             documentation = {
                 -- border = "rounded"
                 border = {"🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏"}
@@ -87,8 +79,8 @@ M.config = function()
                 crates = "Crates",
             },
             format = function(entry, vim_item)
-                vim_item.kind = customsettings.cmp.formatting.kind_icons[vim_item.kind]
-                vim_item.menu = customsettings.cmp.formatting.source_names[entry.source.name]
+                vim_item.kind = cmpsettings.formatting.kind_icons[vim_item.kind]
+                vim_item.menu = cmpsettings.formatting.source_names[entry.source.name]
                 return vim_item
             end,
         },
@@ -99,9 +91,9 @@ M.config = function()
         },
         sources = {
             { name = "nvim_lsp" },
+            { name = "nvim_lua" },
             { name = "path" },
             { name = "luasnip"},
-            { name = "nvim_lua" },
             { name = "buffer", keyword_length = 5},
             { name = "calc" },
             { name = "emoji" },
@@ -111,15 +103,10 @@ M.config = function()
         mapping = cmp.mapping.preset.insert({
             ["<C-d>"] = cmp.mapping.scroll_docs(-4),
             ["<C-f>"] = cmp.mapping.scroll_docs(4),
-            ["<C-y>"] = cmp.mapping.complete(),
+            ["<C-y>"] = cmp.mapping.confirm({select = true}),
+            ["<C-Space>"] = cmp.mapping.complete(),
             ["<C-e>"] = cmp.mapping.close(),
         })
   }
-end
-
-M.setup = function()
-    require("luasnip/loaders/from_vscode").lazy_load()
-    require("cmp").setup(customsettings.cmp)
-end
-
-return M
+require("luasnip/loaders/from_vscode").lazy_load()
+require("cmp").setup(cmpsettings)

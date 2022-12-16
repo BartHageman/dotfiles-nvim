@@ -1,8 +1,5 @@
-local M = {}
-
-M.setup = function()
-    local true_zen = require("true-zen")
-    true_zen.setup({
+local true_zen = require("true-zen")
+true_zen.setup({
         ui = {
             bottom = {
                 laststatus = 0,
@@ -60,7 +57,4 @@ M.setup = function()
             ui_elements_commands = false,
             cursor_by_mode = false,
         }
-    })
-end
-
-return M
+})

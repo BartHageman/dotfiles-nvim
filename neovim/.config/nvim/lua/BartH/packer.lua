@@ -1,23 +1,50 @@
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
+end
+
+local packer_bootstrap = ensure_packer()
+
+
 return require('packer').startup(
    {
         function(use)
             local isWindows = vim.loop.os_uname().version:match "Windows"
-            -- Packer can manage itself
             use 'wbthomason/packer.nvim'
             use 'nvim-lua/popup.nvim'
             use 'nvim-lua/plenary.nvim'
-            use {
-                'sainnhe/everforest',
-            }
             use 'sainnhe/gruvbox-material'
             use 'tpope/vim-surround'
             use 'tpope/vim-repeat'
             use 'andymass/vim-matchup'
-            use 'moll/vim-bbye'
-            --use 'aymericbeaumet/vim-symlink' -- So that fugitive will follow symlinks properly
-            use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim', config = require('core.neogit').setup}
+            use 'moll/vim-bbye' -- Delete buffers without messing up stuff.
+
+
+            -- Git stuff
+            use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim', 
+            config = function() 
+                    require('BartH.setups.neogit') 
+                end
+	    }
             use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
             use 'ThePrimeagen/git-worktree.nvim'
+            use {
+                'lewis6991/gitsigns.nvim',
+                requires = {
+                    'nvim-lua/plenary.nvim'
+                },
+                config = function()
+                   require("BartH.setups.gitsigns")
+                end
+            }
+
+            use { 'mbbill/undotree'}
             use {
                 "folke/trouble.nvim",
                 requires = "kyazdani42/nvim-web-devicons",
@@ -33,30 +60,17 @@ return require('packer').startup(
                 end
             }
             use 'godlygeek/tabular'
-            use 'stevearc/vim-arduino'
             use {
               'romgrk/barbar.nvim',
               requires = {'kyazdani42/nvim-web-devicons'}
             }
             use {
-                'lewis6991/gitsigns.nvim',
-                requires = {
-                    'nvim-lua/plenary.nvim'
-                },
-                config = function()
-                    require("core.gitsigns").setup()
-                end
-            }
-            use {
                 "lukas-reineke/indent-blankline.nvim",
-                config=require('core.indent-blankline').setup
+                config=function()
+                    require('BartH.setups.indent-blankline')
+                end
             } -- Indicate indentation levels with lines
             use 'kyazdani42/nvim-web-devicons' -- for file icons
-            -- use {
-            --     'kyazdani42/nvim-tree.lua',
-            --     requires = 'kyazdani42/nvim-web-devicons',
-            --     config = function() end
-            -- }
             use {
                 's1n7ax/nvim-window-picker',
                 tag = "1.*",
@@ -87,39 +101,24 @@ return require('packer').startup(
                   "MunifTanjim/nui.nvim",
                   "s1n7ax/nvim-window-picker"
                 },
-                 config = require("core.neotree").setup()
+                 config = function() 
+                    require("BartH.setups.neotree")
+                end
               }
             use 'unblevable/quick-scope'
             use {
                 'hoob3rt/lualine.nvim',
-                requires = {'kyazdani42/nvim-web-devicons', opt = true, config = function ()
+                requires = {'kyazdani42/nvim-web-devicons'},
+                config = function()
+                    require('BartH.setups.lualine')
                 end
-            }
-        }
-        -- use {
-        --     "folke/todo-comments.nvim",
-        --     requires = {"nvim-lua/plenary.nvim", "sainnhe/gruvbox-material"},
-        --         config = function()
-        --             local hl = require("todo-comments.highlight")
-        --             local highlight_win = hl.highlight_win
-        --             hl.highlight_win = function(win, force)
-        --                 pcall(highlight_win, win, force)
-        --             end
-        --             require("todo-comments").setup {
-        --                 colors = {
-        --                     error = { "LspDiagnosticsSignError", "ErrorMsg", "#DC2626" },
-        --                     warning = { "LspDiagnosticsSignWarning", "WarningMsg", "#FBBF24" },
-        --                     info = { "LspDiagnosticsSignInformation", "#2563EB" },
-        --                     hint = { "LspDiagnosticsSignHint", "#10B981" },
-        --                     default = { "Identifier", "#7C3AED" },
-        --                 }
-        --             }
-        --         end
-        -- }
-        use 'Ron89/thesaurus_query.vim'
+		}
         use {
             'nvim-telescope/telescope.nvim',
-            requires = { {'nvim-lua/plenary.nvim'} }
+            requires = {'nvim-lua/plenary.nvim' },
+            config = function() 
+                        require('BartH.setups.telescope')
+                     end
         }
         use 'stevearc/dressing.nvim'
         use 'nvim-telescope/telescope-project.nvim'
@@ -128,80 +127,51 @@ return require('packer').startup(
             'rcarriga/nvim-notify',
             opt= false,
             config = function ()
+                require('BartH.setups.notify')
             end
         }
-        use { "williamboman/mason.nvim",
-                config = function ()
-                    require("mason").setup()
-                end
-            }
-        use { 'williamboman/mason-lspconfig.nvim',
-                config = function ()
-                    require("mason-lspconfig").setup()
-                end,
-                requires = "williamboman/mason.nvim"
-            }
-        use { 'neovim/nvim-lspconfig', require = {
-                "williamboman/mason.nvim",
-                "williamboman/mason-lspconfig.nvim",
-            }
-            }
+
+        -- LSP STUFF
+
+        use { "williamboman/mason.nvim"}
+        use { 'williamboman/mason-lspconfig.nvim'}
+        use { 'neovim/nvim-lspconfig'}
+        -- CMP
         use 'hrsh7th/nvim-cmp'
         use 'hrsh7th/cmp-nvim-lsp'
-        use {'jose-elias-alvarez/null-ls.nvim',
-                config = function()
-                    require("core.null-ls").setup()
-                end
-            }
+        use 'hrsh7th/cmp-nvim-lua'
         use 'hrsh7th/cmp-buffer'
         use 'hrsh7th/cmp-path'
-        use 'simrat39/rust-tools.nvim'
+        use 'saadparwaiz1/cmp_luasnip'
+        use {'jose-elias-alvarez/null-ls.nvim',
+                config = function()
+                    require('BartH.setups.null-ls')
+                end
+            }
         --use 'ThePrimeagen/vim-be-good'
         --use 'kevinhwang91/nvim-bqf'
         use 'L3MON4D3/LuaSnip'
-        use 'saadparwaiz1/cmp_luasnip'
+        use 'VonHeikemen/lsp-zero.nvim'
         --use 'rafamadriz/friendly-snippets'
         -- use { 'phaazon/hop.nvim', config = function ()
         --     require'hop'.setup()
         -- end}
         use {
             'nvim-treesitter/nvim-treesitter',
+            run = ':TSUpdate',
             config = function()
-                require("core.treesitter").setup()
-            end
+                        require('BartH.setups.treesitter') 
+                     end
         }
+        use 'simrat39/rust-tools.nvim'
 
-        use {
-            "nvim-neorg/neorg",
-            -- tag = "latest",
-            tag = "*",
-            opt = true,
-            ft = "norg",
-            opt= true,
-            after = "nvim-treesitter", -- You may want to specify Telescope here as well
-            config = function()
-                require('neorg').setup {
-                    load = {
-                        ["core.defaults"] = {},
-                        ["core.norg.completion"] = {
-                           config = { -- Note that this table is optional and doesn't need to be provided
-                               -- Configuration here
-                                engine = "nvim-cmp"
-                           }
-                        },
-                        ["core.norg.concealer"] = {}
-                    }
-                }
-            end
-        }
         use 'nvim-treesitter/nvim-treesitter-textobjects'
         use 'nvim-treesitter/playground'
         use 'bkad/camelcasemotion'
         use 'michaeljsmith/vim-indent-object'
         use 'mattn/emmet-vim'
-        -- use 'neovimhaskell/haskell-vim' -- BECAUSE HASKELL TREESITTER IS SLOW AS SHIT
         use {"Pocco81/true-zen.nvim", config = function()
-                require("core.truezen").setup()
+                require("BartH.setups.truezen")
             end
         }
         -- Only add papyrus if I am on a windows machine
@@ -209,9 +179,9 @@ return require('packer').startup(
             -- use 'sirtaj/vim-papyrus'
             use '~/Documents/Git/vim-papyrus4'
         end
-            if packer_bootstrap then
-                require('packer').sync()
-            end
+        if packer_bootstrap then
+            require('packer').sync()
+        end
         end,
     config = {
         display = {
