@@ -38,6 +38,13 @@ lsp.configure('sumneko_lua', {
       workspace = {
         -- Make the server aware of Neovim runtime files
         library = vim.api.nvim_get_runtime_file("", true),
+        maxPreload = 100000,
+        preloadFileSize = 10000,
+        checkThirdParty = false
+      },
+      completion = {
+            keywordSnippet = "Disable", -- Don't do snippets stuff
+            showWord = "Disable"    -- Document show buffer stuff, I can do this with builtin vim.
       },
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {
