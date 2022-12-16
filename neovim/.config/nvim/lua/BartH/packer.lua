@@ -27,12 +27,14 @@ return require('packer').startup(
 
 
             -- Git stuff
-            use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim', 
-            config = function() 
-                    require('BartH.setups.neogit') 
-                end
-	    }
-            use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+     --        use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim', 
+     --        config = function() 
+     --                require('BartH.setups.neogit') 
+     --            end
+	    -- }
+     --        use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+            use 'aymericbeaumet/vim-symlink'
+            use 'tpope/vim-fugitive'
             use 'ThePrimeagen/git-worktree.nvim'
             use {
                 'lewis6991/gitsigns.nvim',
@@ -148,7 +150,7 @@ return require('packer').startup(
                     require('BartH.setups.null-ls')
                 end
             }
-        --use 'ThePrimeagen/vim-be-good'
+        use 'ThePrimeagen/vim-be-good'
         --use 'kevinhwang91/nvim-bqf'
         use 'L3MON4D3/LuaSnip'
         use 'VonHeikemen/lsp-zero.nvim'
