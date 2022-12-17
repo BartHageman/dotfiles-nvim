@@ -23,7 +23,9 @@ vim.g.camelcasemotion_key = '<leader>'
 
 nmap("<leader>tt", "<cmd>Neotree toggle<CR>")
 
-nmap("<leader>ff", "<cmd>Telescope find_files<cr>")
+nmap("<leader>ff", require('telescope.builtin').find_files)
+nmap("<leader>fws", require('telescope.builtin').lsp_workspace_symbols)
+nmap("<leader>fds", require('telescope.builtin').lsp_document_symbols)
 nmap("<leader>gf", require('telescope.builtin').git_files)
 nmap("<leader>fg", require('telescope.builtin').live_grep)
 nmap("<leader>fb", require('telescope.builtin').buffers)
