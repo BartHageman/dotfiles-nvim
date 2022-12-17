@@ -4,7 +4,13 @@ lsp.preset('lsp-compe')
 require('BartH.setups.cmp')
 lsp.set_preferences({
     cmp_capabilities = true,
-    set_lsp_keymaps = false
+    set_lsp_keymaps = false,
+    sign_icons = {
+        error = '',
+        warn = '',
+        hint = '',
+        info = ''
+      }
 })
 
 lsp.on_attach(function(client, bufnr)
@@ -53,4 +59,28 @@ lsp.configure('sumneko_lua', {
     },
   },
 })
+
 lsp.setup()
+
+-- Borders around the outside of the hover
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+    vim.lsp.handlers.hover, {
+        border = {"🭽", "▔", "🭾", " ", "🭿", "▁", "🭼", " "}
+    }
+)
+
+vim.api.nvim_set_hl(0, "DiagnosticTitle", {italic = false, bold=true, fg="#d4be98"})
+local opts = {
+scope = "line",
+header =  {"律DIAGNOSTICS ","DiagnosticTitle"},
+border = {"🭽", "▔", "🭾", " ", "🭿", "▁", "🭼", " "},
+-- opts.prefix = opts.prefix or {"›  ", "Grey"}
+prefix = function(diagnostic, i, total)
+    if (i ~= total) then
+        return "├ ", "Grey"
+    else
+        return "└ ", "Grey"
+    end
+end
+}
+vim.diagnostic.config{float = opts}

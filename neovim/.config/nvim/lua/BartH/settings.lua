@@ -64,7 +64,9 @@ if vim.g.neovide then
     vim.g.neovide_cursor_trail_length=0.001
     vim.g.neovide_cursor_animation_length=0.023
     vim.g.neovide_input_use_logo=true
-    vim.opt.guifont = "Iosevka:h15"
+    vim.g.neovide_floating_blur_amount_x=5.0
+    vim.g.neovide_floating_blur_amount_y=5.0
+    vim.opt.guifont = "Iosevka:h14"
 end
 
 vim.cmd("let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']")
