@@ -11,6 +11,12 @@ end
 
 local packer_bootstrap = ensure_packer()
 
+local packer_group = vim.api.nvim_create_augroup('Packer', {clear = true})
+vim.api.nvim_create_autocmd('BufWritePost', {
+    command = 'source <afile> | PackerCompile',
+    group = packer_group,
+    pattern = vim.fn.expand('$MYVIMRC')
+})
 
 return require('packer').startup(
    {
@@ -24,6 +30,12 @@ return require('packer').startup(
             use 'tpope/vim-repeat'
             use 'andymass/vim-matchup'
             use 'moll/vim-bbye' -- Delete buffers without messing up stuff.
+            use {
+                'j-hui/fidget.nvim',
+                config = function()
+                    require("fidget").setup{}
+                end
+            }
 
 
             -- Git stuff
@@ -125,6 +137,7 @@ return require('packer').startup(
         use 'stevearc/dressing.nvim'
         use 'nvim-telescope/telescope-project.nvim'
         use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+        use 'nvim-telescope/telescope-symbols.nvim'
         use {
             'rcarriga/nvim-notify',
             opt= false,
@@ -192,3 +205,4 @@ return require('packer').startup(
     }
 }
 )
+
