@@ -1,6 +1,3 @@
-local M = {}
-
-M.setup = function()
 local null_ls = require("null-ls")
 require("null-ls").setup({
     sources = {
@@ -11,6 +8,3 @@ require("null-ls").setup({
         -- require("null-ls").builtins.completion.spell,
     },
 })
-end
-
-return M

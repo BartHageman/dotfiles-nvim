@@ -31,17 +31,3 @@ require('telescope').setup {
 -- load_extension, somewhere after setup function:
 require('telescope').load_extension('fzf')
 require("telescope").load_extension("git_worktree")
-local Mappings = {}
-Mappings.search_dotfiles = function()
-    require("telescope.builtin").find_files({
-        prompt_title = "< Neovim config >",
-        cwd = vim.env.VIMHOMEDIR,
-        hidden = true,
-    })
-end
-Mappings.grep_current_file = function()
-    -- local opt = require('telescope.themes').get_ivy({winblend=0})
-    require('telescope.builtin').current_buffer_fuzzy_find()
-end
-
-return Mappings
