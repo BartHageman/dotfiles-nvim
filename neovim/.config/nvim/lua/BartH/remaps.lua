@@ -33,9 +33,7 @@ nmap("<leader>f/", require('telescope.builtin').current_buffer_fuzzy_find)
 nmap("<leader>vrc", require('BartH.telescope').search_dotfiles)
 nmap("<leader>gww", require('telescope').extensions.git_worktree.git_worktrees)
 nmap("<leader>gwc", require('telescope').extensions.git_worktree.create_git_worktree)
-nmap("<leader>gg", "<cmd>Neogit<cr>")
-nmap("<leader>gd", "<cmd>DiffviewOpen<cr>")
-nmap("<leader>gd", "<cmd>DiffviewOpen<cr>")
+nmap("<leader>gg", "<cmd>G<cr>")
 
 
 nmap("<leader>u", "<cmd>UndotreeToggle<cr>")
@@ -113,3 +111,16 @@ nmap('q:', '<nop>')
 nmap('Q', '<nop>')
 
 nmap('<leader>s', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>')
+
+
+
+-- Fugitive remaps
+local fugitive = vim.api.nvim_create_augroup('fugitive', { clear = true })
+vim.api.nvim_create_autocmd('FileType', {
+  callback = function()
+    nmap("Pp", "<cmd>Git push<cr>", {buffer = true})
+    nmap("pp", "<cmd>Git pull<cr>", {buffer = true})
+  end,
+  group = fugitive,
+  pattern = {"fugitive"}
+})
