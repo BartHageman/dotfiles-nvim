@@ -26,7 +26,9 @@ nmap("<leader>tt", "<cmd>Neotree toggle<CR>")
 nmap("<leader>ff", require('telescope.builtin').find_files)
 nmap("<leader>fws", require('telescope.builtin').lsp_workspace_symbols)
 nmap("<leader>fds", require('telescope.builtin').lsp_document_symbols)
+nmap("<leader>fdd", require('telescope.builtin').diagnostics)
 nmap("<leader>gf", require('telescope.builtin').git_files)
+nmap("<C-p>", require('telescope.builtin').git_files)
 nmap("<leader>fg", require('telescope.builtin').live_grep)
 nmap("<leader>fb", require('telescope.builtin').buffers)
 nmap("<leader>fh", require('telescope.builtin').help_tags)
@@ -115,3 +117,7 @@ nmap('q:', '<nop>')
 nmap('Q', '<nop>')
 
 nmap('<leader>s', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>')
+
+
+nmap('<C-k>', '<cmd>cp<cr>')
+nmap('<C-j>', '<cmd>cn<cr>')
