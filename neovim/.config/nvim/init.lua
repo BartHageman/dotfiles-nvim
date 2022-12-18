@@ -1,3 +1,4 @@
+require('BartH.globals')
 require('BartH.packer')
 require('BartH.settings')
 require('BartH.remaps')
