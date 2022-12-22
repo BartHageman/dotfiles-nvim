@@ -121,3 +121,4 @@ nmap('<leader>s', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>')
 
 nmap('<C-k>', '<cmd>cp<cr>')
 nmap('<C-j>', '<cmd>cn<cr>')
+nmap('<leader>tz', '<cmd>TZAtaraxis<cr>')
