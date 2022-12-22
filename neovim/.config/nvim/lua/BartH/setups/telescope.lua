@@ -4,7 +4,7 @@ require('telescope').setup {
         file_sorter = require("telescope.sorters").get_fzy_sorter,
         file_ignore_patterns = { "node_modules" },
         prompt_prefix = "   ",
-        selection_caret = "  ",
+        selection_caret = "  ",
         entry_prefix = "   ",
         color_devicons = true,
         layout_config = {prompt_position = "top"},
@@ -14,7 +14,8 @@ require('telescope').setup {
         qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
         mappings = {
             i = {
-                ["<C-q>"] = actions.send_to_qflist
+                ["<C-q>"] = actions.send_to_qflist,
+                ["<C-l>"] = actions.send_selected_to_loclist
             },
         },
     },  extensions = {
