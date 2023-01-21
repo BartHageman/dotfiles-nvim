@@ -12,8 +12,7 @@ lsp.set_preferences({
         info = ''
       }
 })
-
-lsp.on_attach(function(client, bufnr)
+local lspOnAttach = function(client, bufnr)
   local opts = {buffer = bufnr, remap = false}
   local bind = function(lhs, rhs) 
         vim.keymap.set("n", lhs, rhs, opts)
@@ -28,7 +27,8 @@ lsp.on_attach(function(client, bufnr)
     bind("<leader>rn", vim.lsp.buf.rename)
     bind("<leader>ca", vim.lsp.buf.code_action)
     bind("<leader>sd" ,vim.diagnostic.open_float)
-end)
+end
+lsp.on_attach(lspOnAttach)
 
 lsp.configure('sumneko_lua', {
  settings = {
@@ -60,6 +60,21 @@ lsp.configure('sumneko_lua', {
   },
 })
 
+local configs = require 'lspconfig.configs'
+
+-- Check if the config is already defined (useful when reloading this file)
+if not configs.papyrus then
+ configs.papyrus = {
+   default_config = {
+     cmd = {'DarkId.Papyrus.Host.Fallout4.exe', '--compilerAssemblyPath', "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Fallout 4\\Papyrus Compiler", "--flagsFileName", "Institute_Papyrus_Flags", "--ambientProjectName", "SPF", "--creationKitInstallPath", "C:\\Program Files\\ (x86)\\Steam\\steamapps\\common\\Fallout 4", "--relativeIniPaths", "."},
+     filetypes = {'papyrus'},
+     root_dir = require('lspconfig').util.root_pattern('.git', '.papyrusroot'),
+     settings = {},
+   },
+ }
+end
+require('lspconfig').papyrus.setup{on_attach = lspOnAttach}
+
 lsp.setup()
 
 -- Borders around the outside of the hover
@@ -84,3 +99,4 @@ prefix = function(diagnostic, i, total)
 end
 }
 vim.diagnostic.config{float = opts}
+
