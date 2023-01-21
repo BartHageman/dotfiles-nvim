@@ -157,7 +157,11 @@ return require('packer').startup(
         use 'hrsh7th/cmp-nvim-lua'
         use 'hrsh7th/cmp-buffer'
         use 'hrsh7th/cmp-path'
-        use 'saadparwaiz1/cmp_luasnip'
+        use {  'saadparwaiz1/cmp_luasnip',
+            config = function()
+                    require('BartH.setups.luasnip')
+                end
+            }
         use {'jose-elias-alvarez/null-ls.nvim',
                 config = function()
                     require('BartH.setups.null-ls')
