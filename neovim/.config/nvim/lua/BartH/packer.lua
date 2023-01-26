@@ -194,6 +194,7 @@ return require('packer').startup(
                 require("BartH.setups.truezen")
             end
         }
+        use 'ggandor/leap.nvim'
 
         use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async', config = function() 
                 require('BartH.setups.ufo')
