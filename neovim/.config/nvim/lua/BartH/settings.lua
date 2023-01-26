@@ -7,9 +7,12 @@ local my_options = {
     completeopt = { "menu", "menuone", "noselect"},
     conceallevel = 0, -- so that `` is visible in markdown files
     fileencoding = "utf-8", -- the encoding written to a file
+    foldcolumn = '1',
     foldmethod = "manual", -- folding, set to "expr" for treesitter based folding
     foldexpr = "nvim_treesitter#foldexpr()", -- set to "nvim_treesitter#foldexpr()" for treesitter based folding
+    foldlevel= 99,
     foldlevelstart = 99,
+    foldenable = true,
     hidden = true, -- required to keep multiple buffers and open multiple buffers
     hlsearch = true, -- highlight all matches on previous search pattern
     ignorecase = true, -- ignore case in search patterns
@@ -44,7 +47,8 @@ local my_options = {
     sidescrolloff = 10,
     incsearch = true,
     inccommand = "nosplit",
-    laststatus = 3
+    laststatus = 3,
+    fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 }
 ---  SETTINGS  ---
 vim.opt.shortmess:append "cs" -- Don't show search wrapped messages

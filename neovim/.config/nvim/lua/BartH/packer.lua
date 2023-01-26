@@ -189,8 +189,14 @@ return require('packer').startup(
         use 'bkad/camelcasemotion'
         use 'michaeljsmith/vim-indent-object'
         use 'mattn/emmet-vim'
+        -- Packer
         use {"Pocco81/true-zen.nvim", config = function()
                 require("BartH.setups.truezen")
+            end
+        }
+
+        use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async', config = function() 
+                require('BartH.setups.ufo')
             end
         }
         -- Only add papyrus if I am on a windows machine

@@ -147,3 +147,7 @@ vim.keymap.set({ 'i', 's' }, "<c-l>", function() -- Change choice at snippet
         luasnip.change_choice(1)
     end
 end, {silent = true})
+
+
+vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
