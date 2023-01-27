@@ -1,22 +1,3 @@
--- local ensure_packer = function()
---   local fn = vim.fn
---   local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
---   if fn.empty(fn.glob(install_path)) > 0 then
---     fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
---     vim.cmd [[packadd packer.nvim]]
---     return true
---   end
---   return false
--- end
---
--- local packer_bootstrap = ensure_packer()
---
--- local packer_group = vim.api.nvim_create_augroup('Packer', {clear = true})
--- vim.api.nvim_create_autocmd('BufWritePost', {
---     command = 'source <afile> | PackerCompile',
---     group = packer_group,
---     pattern = vim.fn.expand('$MYVIMRC')
--- })
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -130,7 +111,7 @@ return require('lazy').setup({
                     require("BartH.setups.neotree")
                 end
               },
-            'unblevable/quick-scope',
+            -- 'unblevable/quick-scope',
             {
                 'hoob3rt/lualine.nvim',
                 dependencies = {'kyazdani42/nvim-web-devicons'},
@@ -206,16 +187,17 @@ return require('lazy').setup({
             end
         },
         'ggandor/leap.nvim',
+         {'ggandor/flit.nvim',
+            config = function()
+                require('flit').setup()
+            end
+        },
 
         {'kevinhwang91/nvim-ufo', dependencies = 'kevinhwang91/promise-async', config = function()
                 require('BartH.setups.ufo')
             end
         },
-        -- Only add papyrus if I am on a windows machine
-        -- if isWindows then
-        --     -- use 'sirtaj/vim-papyrus'
-        --     use '~/Documents/Git/vim-papyrus4'
-        -- end
+        'RageRaptor/vim-papyrus4'
 }
 )
 

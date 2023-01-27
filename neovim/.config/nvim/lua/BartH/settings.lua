@@ -73,5 +73,5 @@ if vim.g.neovide then
     vim.opt.guifont = "Iosevka:h14"
 end
 
-vim.cmd("let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']")
+-- vim.cmd("let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']")
 vim.cmd("let g:user_emmet_leader_key='<C-Z>'")
