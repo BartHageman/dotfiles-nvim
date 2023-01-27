@@ -1,20 +1,35 @@
-local lsp = require('lsp-zero')
-
-lsp.preset('lsp-compe')
-require('BartH.setups.cmp')
-lsp.set_preferences({
-    cmp_capabilities = true,
-    set_lsp_keymaps = false,
-    sign_icons = {
-        error = '',
-        warn = '',
-        hint = '',
-        info = ''
-      }
+-- local lsp = require('lsp-zero')
+local mason = require('mason')
+mason.setup()
+require('mason-lspconfig').setup({
+  ensure_installed = {
+    'tsserver',
+  }
 })
-local lspOnAttach = function(client, bufnr)
+-- lsp.preset('lsp-compe')
+require('BartH.setups.cmp')
+-- lsp.set_preferences({
+--     cmp_capabilities = true,
+--     set_lsp_keymaps = false,
+--     sign_icons = {
+--         error = '',
+--         warn = '',
+--         hint = '',
+--         info = ''
+--       }
+-- })
+--
+
+local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+lsp_capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+}
+
+local lsp_attach = function(_, bufnr)
   local opts = {buffer = bufnr, remap = false}
-  local bind = function(lhs, rhs) 
+  local bind = function(lhs, rhs)
         vim.keymap.set("n", lhs, rhs, opts)
   end
     bind("gd", vim.lsp.buf.definition)
@@ -28,37 +43,37 @@ local lspOnAttach = function(client, bufnr)
     bind("<leader>ca", vim.lsp.buf.code_action)
     bind("<leader>sd" ,vim.diagnostic.open_float)
 end
-lsp.on_attach(lspOnAttach)
+-- lsp.on_attach(lspOnAttach)
 
-lsp.configure('sumneko_lua', {
- settings = {
-    Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
-      },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
-        maxPreload = 100000,
-        preloadFileSize = 10000,
-        checkThirdParty = false
-      },
-      completion = {
-            keywordSnippet = "Disable", -- Don't do snippets stuff
-            showWord = "Disable"    -- Document show buffer stuff, I can do this with builtin vim.
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
+local lsp_settings = {
+    sumneko_lua = {
+        Lua = {
+            runtime = {
+                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                version = 'LuaJIT',
+            },
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = {'vim'},
+            },
+            workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = vim.api.nvim_get_runtime_file("", true),
+                maxPreload = 100000,
+                preloadFileSize = 10000,
+                checkThirdParty = false
+            },
+            completion = {
+                keywordSnippet = "Disable", -- Don't do snippets stuff
+                showWord = "Disable"    -- Document show buffer stuff, I can do this with builtin vim.
+            },
+            -- Do not send telemetry data containing a randomized but unique identifier
+            telemetry = {
+                enable = false,
+            },
+        },
     },
-  },
-})
+}
 
 local configs = require 'lspconfig.configs'
 
@@ -73,9 +88,21 @@ if not configs.papyrus then
    },
  }
 end
-require('lspconfig').papyrus.setup{on_attach = lspOnAttach}
 
-lsp.setup()
+local lspconfig = require('lspconfig')
+require('mason-lspconfig').setup_handlers({
+    function(server_name)
+        lspconfig[server_name].setup({
+            on_attach = lsp_attach,
+            capabilities = lsp_capabilities,
+            settings = lsp_settings[server_name] or {}
+        })
+    end,
+})
+
+
+require('lspconfig').papyrus.setup{on_attach = lsp_attach}
+-- lsp.setup()
 
 -- Borders around the outside of the hover
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
@@ -100,3 +127,8 @@ end
 }
 vim.diagnostic.config{float = opts}
 
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  virtual_text = {
+    prefix = '◉', -- Could be '●', '▎', 'x', '■'
+  }
+})

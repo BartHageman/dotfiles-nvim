@@ -112,7 +112,7 @@ nmap('J', 'mzJ`z', {})
 nmap('<C-d>', '<C-d>zz', {})
 nmap('<C-u>', '<C-u>zz', {})
 
-nmap('q:', '<nop>')
+-- nmap('q:', '<nop>')
 nmap('Q', '<nop>')
 
 nmap('<leader>s', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>')
