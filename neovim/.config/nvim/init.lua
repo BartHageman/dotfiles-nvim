@@ -1,5 +1,5 @@
 require('BartH.globals')
-require('BartH.packer')
+require('BartH.plugins')
 require('BartH.settings')
 require('BartH.remaps')
 require('BartH.colorscheme')

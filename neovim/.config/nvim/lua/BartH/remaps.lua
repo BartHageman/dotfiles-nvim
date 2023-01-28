@@ -52,7 +52,6 @@ nmap('<C-CR>', 'O<esc>', {})
 -- Make Y behave like the rest of the capital letters
 nmap('Y', 'yg$', {})
 
-
 nmap("E", "ge")
 
 -- Pasting over something in visual mode no longer overwrites what you copied.
@@ -113,7 +112,7 @@ nmap('J', 'mzJ`z', {})
 nmap('<C-d>', '<C-d>zz', {})
 nmap('<C-u>', '<C-u>zz', {})
 
-nmap('q:', '<nop>')
+-- nmap('q:', '<nop>')
 nmap('Q', '<nop>')
 
 nmap('<leader>s', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>')
@@ -122,3 +121,34 @@ nmap('<leader>s', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>')
 nmap('<C-k>', '<cmd>cp<cr>')
 nmap('<C-j>', '<cmd>cn<cr>')
 nmap('<leader>tz', '<cmd>TZAtaraxis<cr>')
+
+
+
+-- ===========
+-- Luasnip
+-- ===========
+--
+local luasnip = require('luasnip')
+vim.keymap.set({ 'i', 's' }, "<c-k>", function() -- Expand snippet key
+    if luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+    end
+end, {silent = true})
+
+vim.keymap.set({ 'i', 's' }, "<c-j>", function() -- go back in snippet key
+    if luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+    end
+end, {silent = true})
+
+
+vim.keymap.set({ 'i', 's' }, "<c-l>", function() -- Change choice at snippet
+    if luasnip.choice_active() then
+        luasnip.change_choice(1)
+    end
+end, {silent = true})
+
+
+vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+require('leap').add_default_mappings()

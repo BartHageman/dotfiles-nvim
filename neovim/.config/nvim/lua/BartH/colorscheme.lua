@@ -1,3 +1,7 @@
+local function hilink(lhs, rhs)
+    vim.api.nvim_set_hl(0, lhs, {link = rhs})
+end
+
 
 function ColorMeSurprised(color)
     color = color or "gruvbox-material"
@@ -7,6 +11,10 @@ function ColorMeSurprised(color)
         vim.api.nvim_set_hl(0, "Normal", {bg = "none"})
         vim.api.nvim_set_hl(0, "NormalFloat", {bg = "none"})
     end
+    hilink("DiagnosticVirtualTextError", "DiagnosticSignError")
+    hilink("DiagnosticVirtualTextWarn", "DiagnosticSignWarn")
+    hilink("DiagnosticVirtualTextInfo", "DiagnosticSignInfo")
+    hilink("DiagnosticVirtualTextHint", "DiagnosticSignHint")
 end
 
 ColorMeSurprised()
