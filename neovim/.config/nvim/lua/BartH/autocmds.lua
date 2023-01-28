@@ -1,7 +1,7 @@
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
-    vim.highlight.on_yank({higroup="DiffAdd"})
+    vim.highlight.on_yank({timeout=150, higroup="DiffAdd"})
   end,
   group = highlight_group,
   pattern = '*',
@@ -40,3 +40,10 @@ vim.api.nvim_create_autocmd('BufRead', {
 })
 
 vim.cmd([[au BufNewFile,BufRead *.ejs set filetype=html]])
+
+local ejs = vim.api.nvim_create_augroup('ejs', {clear = true})
+vim.api.nvim_create_autocmd('BufWritePost', {
+    command = "RunEJS",
+    group = ejs,
+    pattern = "*.ejs"
+})
