@@ -69,9 +69,9 @@ nmap("<leader><", "<cmd>BufferMovePrevious<CR>")
 nmap("<leader>>", "<cmd>BufferMoveNext<CR>")
 
 for i = 1,9 do
-    nmap("<A-" .. i .. ">", "<cmd>BufferGoto " .. i .. "<CR>")
+    nmap("<A-" .. i .. ">", function() require("harpoon.ui").navfile(i) end)
 end
-nmap("<A-" .. 0 .. ">", "<cmd>BufferGoto " .. 10 .. "<CR>")
+-- nmap("<A-" .. 0 .. ">", "<cmd>BufferGoto " .. 10 .. "<CR>")
 
 nmap("<leader>tx", "<cmd>BufferClose<CR>")
 nmap("<leader>tn", "<cmd>tabnew<CR>")

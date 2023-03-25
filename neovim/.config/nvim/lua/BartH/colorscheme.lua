@@ -4,7 +4,7 @@ end
 
 
 function ColorMeSurprised(color)
-    color = color or "gruvbox-material"
+    color = color or "everforest"
     vim.cmd.colorscheme(color)
     vim.api.nvim_set_hl(0, "TelescopePromptPrefix", {link = "Normal"})
     if vim.fn.has("win32") ~= 1 and not vim.g.neovide then

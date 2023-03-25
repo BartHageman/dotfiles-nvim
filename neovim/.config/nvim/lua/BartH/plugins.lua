@@ -18,9 +18,29 @@ return require('lazy').setup({
             'nvim-lua/popup.nvim',
             'nvim-lua/plenary.nvim',
             'sainnhe/gruvbox-material',
+            'sainnhe/everforest',
+            'shaunsingh/nord.nvim',
             'tpope/vim-surround',
             'tpope/vim-repeat',
             'andymass/vim-matchup',
+            {
+                'karb94/neoscroll.nvim',
+                lazy = false,
+                config = function()
+                    require("neoscroll").setup({
+                        easing_function = "quadratic",
+                        mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>',
+                                    '<C-y>', '<C-e>', 'zt', 'zz', 'zb'},
+                        hide_cursor = true,          -- Hide cursor while scrolling
+                        stop_eof = true,             -- Stop at <EOF> when scrolling downwards
+                        respect_scrolloff = true,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+                        cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+                        pre_hook = nil,              -- Function to run before the scrolling animation starts
+                        post_hook = nil,             -- Function to run after the scrolling animation ends
+                        performance_mode = false,    -- Disable "Performance Mode" on all buffers.
+                    })
+                end
+            },
             'moll/vim-bbye', -- Delete buffers without messing up stuff.
             {
                 'j-hui/fidget.nvim',
@@ -66,10 +86,12 @@ return require('lazy').setup({
                 end
             },
             'godlygeek/tabular',
-            {
-              'romgrk/barbar.nvim',
-              dependencies = {'kyazdani42/nvim-web-devicons'}
-            },
+            -- {
+            --   'romgrk/barbar.nvim',
+            --   dependencies = {'kyazdani42/nvim-web-devicons'}
+            -- },
+            {'akinsho/bufferline.nvim', version = "v3.*", dependencies = 'kyazdani42/nvim-web-devicons', config = function() require("BartH.setups.bufferline") end},
+            {'ThePrimeagen/harpoon'},
             {
                 "lukas-reineke/indent-blankline.nvim",
                 config=function()
