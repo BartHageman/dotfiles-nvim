@@ -19,6 +19,13 @@ local runEJS = function()
 end
 
 vim.api.nvim_create_user_command("RunEJS", runEJS, {})
+vim.g.wordmotion_prefix = '<leader>'
+
+vim.cmd[[
+    let b:match_ignorecase = 1
+    let b:match_words = '\<if\>:\<elseif\>:\<else\>:\<endif\>,'
+    \ . '\<while\>:\<endwhile\>,' . '\<group\>:\<endgroup\>,' . '\<state\>:\<endstate\>,\<function\>:\<endfunction\>,\<struct\>:\<endstruct\>,\<event\>:\<endevent\>' 
+]]
 -- vim.cmd[[
 -- function! SynStack()
 --   if !exists("*synstack")

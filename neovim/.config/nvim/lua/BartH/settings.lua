@@ -63,7 +63,7 @@ if vim.g.neovide then
     local isWindows = vim.loop.os_uname().version:match "Windows"
     if isWindows then 
         vim.g.neovide_refresh_rate=160
-    else 
+    else
         vim.g.neovide_refresh_rate=60
     end
     vim.g.neovide_cursor_trail_length=0.001

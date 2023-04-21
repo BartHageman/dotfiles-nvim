@@ -19,8 +19,6 @@ function imap(lhs, rhs, opt)
 end
 
 vim.g.mapleader = " "
-vim.g.camelcasemotion_key = '<leader>'
-
 nmap("<leader>tt", "<cmd>Neotree toggle<CR>")
 
 nmap("<leader>ff", require('telescope.builtin').find_files)
@@ -52,8 +50,6 @@ nmap('<C-CR>', 'O<esc>', {})
 -- Make Y behave like the rest of the capital letters
 nmap('Y', 'yg$', {})
 
-nmap("E", "ge")
-
 -- Pasting over something in visual mode no longer overwrites what you copied.
 xmap('<leader>p', '"_dP', {})
 
@@ -69,8 +65,11 @@ nmap("<leader><", "<cmd>BufferMovePrevious<CR>")
 nmap("<leader>>", "<cmd>BufferMoveNext<CR>")
 
 for i = 1,9 do
-    nmap("<A-" .. i .. ">", function() require("harpoon.ui").navfile(i) end)
+    nmap("<A-" .. i .. ">", function() require("harpoon.ui").nav_file(i) end)
 end
+nmap("<leader>hm", require("harpoon.mark").add_file)
+nmap("<leader>he", require("harpoon.ui").toggle_quick_menu)
+
 -- nmap("<A-" .. 0 .. ">", "<cmd>BufferGoto " .. 10 .. "<CR>")
 
 nmap("<leader>tx", "<cmd>BufferClose<CR>")
@@ -152,3 +151,5 @@ end, {silent = true})
 vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
 vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
 require('leap').add_default_mappings()
+
+vim.g.wordmotion_prefix = '<leader>'

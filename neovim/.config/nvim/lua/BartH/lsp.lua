@@ -46,7 +46,7 @@ end
 -- lsp.on_attach(lspOnAttach)
 
 local lsp_settings = {
-    sumneko_lua = {
+    lua_ls = {
         Lua = {
             runtime = {
                 -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
@@ -73,6 +73,16 @@ local lsp_settings = {
             },
         },
     },
+    pylsp = {
+        pylsp = {
+            plugins = {
+                pycodestyle = {
+                    ignore = {'E501'},
+                    maxLineLength = 100
+                }
+            }
+        }
+    }
 }
 
 local configs = require 'lspconfig.configs'
