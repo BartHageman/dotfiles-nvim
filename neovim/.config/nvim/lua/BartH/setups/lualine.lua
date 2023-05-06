@@ -1,8 +1,9 @@
     require('lualine').setup{
         options = {
-            theme = 'gruvbox-material',
-            -- section_separators = { left = '', right = ''},
-            section_separators = { left = '', right = ''},
-            component_separators = { left = '·', right = '·'}
+            theme = 'everforest',
+            section_separators = { left = '', right = ''},
+            -- section_separators = { left = '', right = ''},
+            -- component_separators = { left = '·', right = '·'}
+            component_separators = { left = '', right = ''}
     }
 }
