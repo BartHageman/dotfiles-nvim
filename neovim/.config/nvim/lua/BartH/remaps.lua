@@ -21,7 +21,7 @@ end
 vim.g.mapleader = " "
 vim.g.camelcasemotion_key = '<leader>'
 
-nmap("<leader>tt", "<cmd>Neotree toggle<CR>")
+nmap("<leader>tt", "<cmd>Neotree toggle float<CR>")
 
 nmap("<leader>ff", require('telescope.builtin').find_files)
 nmap("<leader>fws", require('telescope.builtin').lsp_workspace_symbols)
