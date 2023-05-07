@@ -48,8 +48,7 @@ local my_options = {
     incsearch = true,
     inccommand = "nosplit",
     laststatus = 3,
-    fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]],
-    guifont = "JetBrainsMono NF:h14"
+    fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 }
 ---  SETTINGS  ---
 vim.opt.shortmess:append "cs" -- Don't show search wrapped messages
