@@ -14,7 +14,8 @@ end
 vim.api.nvim_create_user_command("TorchIt", torchit, {})
 
 local runEJS = function()
-   local cmd = "cd " .. require('lspconfig.util').find_git_ancestor(vim.fn.expand("%")).. "/templates;npx ejs ./index.ejs -f ../__tests__/data/ejstestdata.json -o ./index.html"
+   local cmd = "cd " .. vim.fn.expand('%:p:h') .. ";npx ejs ./index.ejs -f ../__tests__/data/ejstestdata.json -o ./index.html"
+   print(cmd)
    vim.fn.jobstart(cmd, {stdout_buffered = true})
 end
 
