@@ -197,6 +197,7 @@ return require('lazy').setup({
                 require("BartH.setups.truezen")
             end
         },
+        {"shortcuts/no-neck-pain.nvim", version = "*"},
         'ggandor/leap.nvim',
         --  {'ggandor/flit.nvim',
         --     config = function()
@@ -204,10 +205,11 @@ return require('lazy').setup({
         --     end
         -- },
 
-        {'kevinhwang91/nvim-ufo', dependencies = 'kevinhwang91/promise-async', config = function()
+        {'kevinhwang91/nvim-ufo', dependencies = {'kevinhwang91/promise-async','luukvbaal/statuscol.nvim'}, config = function()
                 require('BartH.setups.ufo')
             end
         },
+        -- {'luukvbaal/statuscol.nvim'},
         'RageRaptor/vim-papyrus4'
 }
 )

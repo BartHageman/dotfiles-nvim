@@ -4,7 +4,7 @@ true_zen.setup({
             options = {
                 number = true,
                 relativenumber = true,
-                signcolumn = "no",
+                signcolumn = "yes",
             },
             padding = {
                 left = 100
