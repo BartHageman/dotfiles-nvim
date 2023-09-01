@@ -71,6 +71,7 @@ ls.add_snippets(nil, {
         ls.parser.parse_snippet("inputdisable", "${1:LayerName}.DisablePlayerControls(${2:abMovement},${3:abFighting},${4:abCamSwitch},${5:abLooking},${6:abSneaking},${7:abMenu},${8:abActivate},${9:abJournalTabs},${10:abVATS},${11:abFavorites},${12:abRunning})"),
         ls.parser.parse_snippet("inputonlylook", "${1:LayerName}.DisablePlayerControls(true,true,true,false,true,true,true,true,true,true,true)"),
         ls.parser.parse_snippet("delinputlayer", "$1.EnablePlayerControls(true,true,true,true,true,true,true,true,true,true,true)\n$1.Delete()"),
-        ls.parser.parse_snippet("strct", "Struct $1\n  $3\nEndStruct\n$0")
+        ls.parser.parse_snippet("strct", "Struct $1\n  $3\nEndStruct\n$0"),
+        ls.parser.parse_snippet("magiceffect", "Event OnEffectStart(Actor akTarget, Actor akCaster)\n   \nEndEvent\n\nEvent OnEffectFinish(Actor akTarget, Actor akCaster)\n   \nEndEvent$0")
     },
 })

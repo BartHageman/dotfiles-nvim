@@ -210,7 +210,8 @@ return require('lazy').setup({
             end
         },
         -- {'luukvbaal/statuscol.nvim'},
-        'RageRaptor/vim-papyrus4'
+        'RageRaptor/vim-papyrus4',
+        'jeroenbourgois/vim-actionscript'
 }
 )
 
