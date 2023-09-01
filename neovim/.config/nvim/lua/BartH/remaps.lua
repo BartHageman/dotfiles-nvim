@@ -1,19 +1,19 @@
-function nmap(lhs, rhs, opt)
+local function nmap(lhs, rhs, opt)
    opt = opt or {}
    vim.keymap.set('n', lhs, rhs, opt)
 end
 
-function xmap(lhs, rhs, opt)
+local function xmap(lhs, rhs, opt)
    opt = opt or {}
    vim.keymap.set('x', lhs, rhs, opt)
 end
 
-function vmap(lhs, rhs, opt)
+local function vmap(lhs, rhs, opt)
    opt = opt or {}
    vim.keymap.set('v', lhs, rhs, opt)
 end
 
-function imap(lhs, rhs, opt)
+local function imap(lhs, rhs, opt)
    opt = opt or {}
    vim.keymap.set('i', lhs, rhs, opt)
 end
@@ -27,9 +27,9 @@ nmap("<leader>ff", require('telescope.builtin').find_files)
 nmap("<leader>fws", require('telescope.builtin').lsp_workspace_symbols)
 nmap("<leader>fds", require('telescope.builtin').lsp_document_symbols)
 nmap("<leader>fdd", require('telescope.builtin').diagnostics)
-nmap("<leader>gf", require('telescope.builtin').git_files)
+nmap("<leader>fg", require('telescope.builtin').git_files)
 nmap("<C-p>", require('telescope.builtin').git_files)
-nmap("<leader>fg", require('telescope.builtin').live_grep)
+nmap("<leader>gf", require('telescope.builtin').live_grep)
 nmap("<leader>fb", require('telescope.builtin').buffers)
 nmap("<leader>fh", require('telescope.builtin').help_tags)
 nmap("<leader>fr", require('telescope.builtin').oldfiles)
@@ -121,8 +121,9 @@ nmap('<leader>s', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>')
 
 nmap('<C-k>', '<cmd>cp<cr>')
 nmap('<C-j>', '<cmd>cn<cr>')
+nmap('<leader>co', ':copen<cr>')
+nmap('<leader>cc', ':copen<cr>')
 nmap('<leader>tz', '<cmd>TZAtaraxis<cr>')
-
 
 
 -- ===========
