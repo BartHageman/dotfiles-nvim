@@ -1,19 +1,19 @@
-function nmap(lhs, rhs, opt)
+local function nmap(lhs, rhs, opt)
    opt = opt or {}
    vim.keymap.set('n', lhs, rhs, opt)
 end
 
-function xmap(lhs, rhs, opt)
+local function xmap(lhs, rhs, opt)
    opt = opt or {}
    vim.keymap.set('x', lhs, rhs, opt)
 end
 
-function vmap(lhs, rhs, opt)
+local function vmap(lhs, rhs, opt)
    opt = opt or {}
    vim.keymap.set('v', lhs, rhs, opt)
 end
 
-function imap(lhs, rhs, opt)
+local function imap(lhs, rhs, opt)
    opt = opt or {}
    vim.keymap.set('i', lhs, rhs, opt)
 end
@@ -121,8 +121,9 @@ nmap('<leader>s', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>')
 
 nmap('<C-k>', '<cmd>cp<cr>')
 nmap('<C-j>', '<cmd>cn<cr>')
+nmap('<leader>co', ':copen<cr>')
+nmap('<leader>cc', ':copen<cr>')
 nmap('<leader>tz', '<cmd>TZAtaraxis<cr>')
-
 
 
 -- ===========
