@@ -14,6 +14,20 @@ local function setUpLSPKeybinds(args)
   end, { desc = 'Show previous diagnostic message' })
 end
 
+local function setSigns()
+  vim.diagnostic.config({
+    signs = {
+      text = {
+        [vim.diagnostic.severity.ERROR] = '󰅜',
+        [vim.diagnostic.severity.WARN] = '',
+        [vim.diagnostic.severity.INFO] = '',
+        [vim.diagnostic.severity.HINT] = '󰌵',
+      }
+    },
+  })
+end
+
+
 return {
   {
     "williamboman/mason.nvim",
@@ -27,6 +41,7 @@ return {
     config = function()
       -- LSP settings (for overriding per client)
       require("mason-lspconfig").setup()
+      setSigns()
       require("mason-lspconfig").setup_handlers {
         -- The first entry (without a key) will be the default handler
         -- and will be called for each installed server that doesn't have
