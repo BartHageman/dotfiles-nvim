@@ -12,8 +12,18 @@ local function strip_ansi_and_split(str)
   return lines
 end
 
+local xmake_lua_found = vim.fn.filereadable(vim.fs.joinpath(vim.fn.getcwd(), 'xmake.lua')) == 1
+
+if not xmake_lua_found then
+  vim.api.nvim_notify("WARN: Unable to find xmake.lua file. Is it in the current working directory?",
+    vim.log.levels
+    .WARN, {})
+  return
+end
+
 local result = vim.system({ 'xmake.exe', 'show', '-l', 'targets' }, { cwd = vim.fn.getcwd(), text = true }):wait()
 print(vim.inspect(result))
+
 
 local targets = strip_ansi_and_split(result.stdout)
 
