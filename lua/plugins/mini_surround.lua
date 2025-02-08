@@ -1,1 +1,1 @@
-return { { 'echasnovski/mini.surround', version = '*' } }
+return { { 'echasnovski/mini.surround', version = '*', opts = {} } }
