@@ -48,6 +48,7 @@ return {
   end,
   dependencies = {
     'nvim-lua/plenary.nvim',
+    { "nvim-tree/nvim-web-devicons",             opts = {} },
     { 'nvim-telescope/telescope-fzy-native.nvim' }
   }
 }
