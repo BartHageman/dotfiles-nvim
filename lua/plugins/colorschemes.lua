@@ -13,10 +13,12 @@ return {
     lazy = false,
     priority = 1000, -- make sure to load this before all the other start plugins
     -- Optional; default configuration will be used if setup isn't called.
+    --
     config = function()
       require("everforest").setup({
         background = "soft",
         colours_override = function(palette)
+          palette.bg_dim = "#191515"
           palette.bg0 = "#191515" -- Main BG
           palette.bg1 = "#241e1c"
           palette.bg2 = "#382f2d"
@@ -26,18 +28,20 @@ return {
           palette.grey0 = "#928181"
           palette.grey1 = "#978787" -- Comments
           palette.grey2 = "#a08680" -- Comments
-          palette.fg = "#c5b8a1"
-          palette.blue = "#98aace"
-          palette.purple = "#c699c3"
-          palette.aqua = "#82afa2"
-          palette.orange = "#e8895a"
+          palette.fg = "#c9b397"
+          palette.blue = "#70a4b6"
+          palette.purple = "#ce87a9"
+          palette.aqua = "#6ca796"
+          palette.orange = "#e59c6b"
           palette.red = "#ea7c72"
           palette.green = "#acc475"
-          palette.yellow = "#e5c36b"
+          palette.yellow = "#dbb15b"
           palette.bg_visual = "#563e2a"
         end,
       })
       vim.cmd("colorscheme everforest")
+      vim.cmd [[hi TelescopeBorder guifg=#7f5f55]]
+      vim.cmd [[hi link TelescopeSelection Visual]]
     end,
   }
 }
