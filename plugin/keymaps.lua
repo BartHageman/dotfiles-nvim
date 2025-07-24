@@ -59,6 +59,10 @@ map("n", "<C-k>", ":cprev<cr>")
 -- Code actions
 -- TODO: move this to lsp
 map("n", "<leader>ca", vim.lsp.buf.code_action)
+map("n", "<leader>gD", vim.lsp.buf.declaration)
+map("n", "<leader>gd", vim.lsp.buf.definition)
+map("n", "<leader>gd", vim.lsp.buf.implementation)
+map("n", "<leader>gr", vim.lsp.buf.references)
 
 -- -- Easier terminal escape
 map("t", "<esc><esc>", '<C-\\><C-N>')
