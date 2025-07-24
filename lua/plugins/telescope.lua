@@ -7,9 +7,9 @@ return {
       defaults = {
         file_ignore_patterns = { 'node_modules' },
         prompt_prefix = '   ',
-        selection_caret = '  ',
+        selection_caret = '  ',
         entry_prefix = '   ',
-        color_devicons = true,
+        color_devicons = false,
         layout_config = { prompt_position = 'top' },
         sorting_strategy = 'ascending',
       },
