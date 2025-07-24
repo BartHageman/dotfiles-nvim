@@ -83,7 +83,7 @@ return {
             end
           end,
         })
-
+      }
     end,
     dependencies = {
       {
