@@ -73,7 +73,7 @@ function M.create_terminal(config)
   if create_fresh and config.cmd then
     vim.fn.termopen(config.cmd)
   elseif create_fresh then
-    vim.fn.termopen(vim.o.shell)
+    vim.fn.termopen()
   end
   -- Start terminal in the buffer
 
