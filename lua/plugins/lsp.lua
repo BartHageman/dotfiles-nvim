@@ -31,11 +31,20 @@ end
 return {
   {
     "williamboman/mason.nvim",
+    version = "^1.0.0",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "jay-babu/mason-nvim-dap.nvim",
+    },
     config = function()
       require("mason").setup()
+      require("mason-nvim-dap").setup()
     end
   },
+  {
   "williamboman/mason-lspconfig.nvim",
+  version = "^1.0.0" ,
+},
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -74,7 +83,7 @@ return {
             end
           end,
         })
-      }
+
     end,
     dependencies = {
       {
