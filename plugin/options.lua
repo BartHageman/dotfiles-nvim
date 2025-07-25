@@ -8,4 +8,6 @@ set.relativenumber = true
 set.laststatus = 3
 set.clipboard = "unnamedplus"
 set.scrolloff = 10
+vim.opt.undofile = true 
+
 set.fillchars:append({ eob = "·" })
