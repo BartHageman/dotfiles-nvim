@@ -4,9 +4,17 @@ local let = vim.g
 
 let.mapleader = ' '
 
+-- Go to the first non-blank character of 
+-- EITHER 
+-- the starting line of the paragraph 
+-- OR
+-- ending line of the paragraph
+map({'n', 'x'}, '<leader>{', '{j_', {}) -- Starting line
+map({'n', 'x'}, '<leader>}', '}k_', {}) -- Ending line
 
 -- Easily void things you're visually pasting over
 map('x', '<leader>p', '"_dP', {})
+
 -- Keep screen centered when moving around
 map('n', 'n', 'nzz', {})
 map('n', 'N', 'Nzz', {})
@@ -15,6 +23,7 @@ map('n', '<C-u>', '<C-u>zz', {})
 map('n', 'N', 'Nzz', {})
 
 map('n', 'J', 'mzJ`z', {})
+
 -- Add aditional undo moments for punctuation marks
 map('i', ',', ',<c-g>u')
 map('i', '?', '?<c-g>u')
@@ -32,6 +41,7 @@ map('i', '.', '.<c-g>u')
 -- Make visual indentation not stupid
 map('v', '<', '<gv')
 map('v', '>', '>gv')
+
 -- Quickfix list
 map('n', '[q', '<cmd>cp<cr>', { desc = "Previous [Q]uickfix list item" })
 map('n', ']q', '<cmd>cn<cr>', { desc = "Next [Q]uickfix list item" })
