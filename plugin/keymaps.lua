@@ -63,9 +63,9 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- or just use <C-\><C-n> to exit terminal mode
 --vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
-map("n", "<C-j>", ":cnext<cr>")
-map("n", "<C-k>", ":cprev<cr>")
-
+-- map("n", "<C-j>", ":cnext<cr>")
+-- map("n", "<C-k>", ":cprev<cr>")
+--
 -- Code actions
 -- TODO: move this to lsp
 map("n", "<leader>ca", vim.lsp.buf.code_action)
@@ -73,6 +73,7 @@ map("n", "<leader>gD", vim.lsp.buf.declaration)
 map("n", "<leader>gd", vim.lsp.buf.definition)
 map("n", "<leader>gd", vim.lsp.buf.implementation)
 map("n", "<leader>gr", vim.lsp.buf.references)
+map("n", "<leader>gf", vim.lsp.buf.format)
 
 -- -- Easier terminal escape
 map("t", "<esc><esc>", '<C-\\><C-N>')
@@ -90,3 +91,11 @@ vim.keymap.set("n", "<leader>th", function()
 end)
 
 vim.keymap.set("n", "<leader>tf", require('custom.float_win').create_terminal)
+
+
+
+-- Always switch to newly created splits
+
+vim.keymap.set("n", "<C-w>s", "<C-w>s<C-w>j")
+vim.keymap.set("n", "<C-w>v", "<C-w>v<C-w>l")
+
