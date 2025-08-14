@@ -9,5 +9,6 @@ set.laststatus = 3
 set.clipboard = "unnamedplus"
 set.scrolloff = 10
 vim.opt.undofile = true 
+set.wrap = false
 
 set.fillchars:append({ eob = "·" })
