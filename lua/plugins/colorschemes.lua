@@ -2,11 +2,9 @@
 return {
   {
     "rose-pine/neovim",
-    name = "rose-pine",
-    config = function()
-      vim.cmd("colorscheme rose-pine")
-    end,
+    name = "rose-pine"
   },
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
   {
     "sainnhe/gruvbox-material",
   },
@@ -63,12 +61,12 @@ return {
   --
   --     vim.api.nvim_set_hl(0, "TelescopeBorder", {
   --       fg = "#D26019",
-  --       bg = bg_color  
+  --       bg = bg_color
   --     })
   --
   --     vim.api.nvim_set_hl(0, "TelescopeMatching", {
   --       fg = "#FFD46F",
-  --       bg = bg_color  
+  --       bg = bg_color
   --     })
   --     --vim.cmd [[hi TelescopeBorder guifg=#BB6232]]
   --     vim.cmd [[hi link TelescopeSelection Visual]]
