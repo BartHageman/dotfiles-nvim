@@ -71,9 +71,9 @@ function M.create_terminal(config)
   local win = vim.api.nvim_open_win(buf, true, win_opts)
 
   if create_fresh and config.cmd then
-    vim.fn.termopen(config.cmd)
+    vim.fn.jobstart(config.cmd, { term = true })
   elseif create_fresh then
-    vim.fn.termopen(vim.o.shell)
+    vim.fn.jobstart(vim.o.shell, { term = true })
   end
   -- Start terminal in the buffer
 
@@ -108,7 +108,7 @@ end
 
 M.toggle_terminal = function(config)
   config = config or { title = 'Terminal' }
-  print(vim.inspect(state['test']))
+  --print(vim.inspect(state['test']))
   if not vim.api.nvim_win_is_valid(state[config.title].win) then
     M.create_terminal(config)
   else
