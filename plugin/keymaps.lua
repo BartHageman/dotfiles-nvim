@@ -4,13 +4,13 @@ local let = vim.g
 
 let.mapleader = ' '
 
--- Go to the first non-blank character of 
--- EITHER 
--- the starting line of the paragraph 
+-- Go to the first non-blank character of
+-- EITHER
+-- the starting line of the paragraph
 -- OR
 -- ending line of the paragraph
-map({'n', 'x'}, '<leader>{', '{j_', {}) -- Starting line
-map({'n', 'x'}, '<leader>}', '}k_', {}) -- Ending line
+map({ 'n', 'x' }, '<leader>{', '{j_', {}) -- Starting line
+map({ 'n', 'x' }, '<leader>}', '}k_', {}) -- Ending line
 
 -- Easily void things you're visually pasting over
 map('x', '<leader>p', '"_dP', {})
@@ -52,7 +52,7 @@ vim.keymap.set('n', '<leader>cd', '<CMD>cd %:p:h<CR><CMD>pwd<CR>',
   { desc = '[C]hange working [D]irectory to current file parent' })
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
+vim.keymap.set('n', '<leader>sd', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
@@ -71,9 +71,10 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 map("n", "<leader>ca", vim.lsp.buf.code_action)
 map("n", "<leader>gD", vim.lsp.buf.declaration)
 map("n", "<leader>gd", vim.lsp.buf.definition)
-map("n", "<leader>gd", vim.lsp.buf.implementation)
+map("n", "<leader>gi", vim.lsp.buf.implementation)
 map("n", "<leader>gr", vim.lsp.buf.references)
 map("n", "<leader>gf", vim.lsp.buf.format)
+map("n", "<leader>grn", vim.lsp.buf.rename)
 
 -- -- Easier terminal escape
 map("t", "<esc><esc>", '<C-\\><C-N>')
@@ -95,7 +96,12 @@ vim.keymap.set("n", "<leader>tf", require('custom.float_win').create_terminal)
 
 
 -- Always switch to newly created splits
-
 vim.keymap.set("n", "<C-w>s", "<C-w>s<C-w>j")
 vim.keymap.set("n", "<C-w>v", "<C-w>v<C-w>l")
 
+-- Letter swap motion
+vim.keymap.set("n", "gxx", "\"zx\"zph")
+
+
+-- Ungoof myself if I type something I didn't mean to.
+vim.keymap.set("n", "q:", ":q")
