@@ -1,1 +1,7 @@
-return { { 'echasnovski/mini.operators', version = '*', opts = {} } }
+return { {
+  'echasnovski/mini.operators',
+  version = '*',
+  opts = {
+    replace = { prefix = 'gp' }
+  }
+} }

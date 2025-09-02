@@ -117,13 +117,13 @@ M.toggle_terminal = function(config)
 end
 
 vim.api.nvim_create_user_command("FloatingTerminal", M.toggle_terminal, {})
-vim.keymap.set({ 'n', 't' }, "<leader>tt", M.toggle_terminal, { desc = "[T]oggle [T]erminal" })
-vim.keymap.set({ 'n', 't' }, "<leader>tg", function() M.toggle_terminal { title = "Lazygit", cmd = "lazygit" } end,
-  { desc = "[T]oggle Lazy[G]it" })
-vim.keymap.set({ 'n', 't' }, "<leader>txb",
-  function() M.toggle_terminal { title = "xmake build results", cmd = "xmake build" } end,
-  { desc = "[T]oggle Lazy[G]it" })
-vim.keymap.set({ 'n', 't' }, "<leader>txr", function() M.toggle_terminal { title = "xmake run", cmd = "xmake run" } end,
-  { desc = "[T]oggle Lazy[G]it" })
+vim.keymap.set({ 'n' }, "<leader>tt", M.toggle_terminal, { desc = "[T]oggle [T]erminal" })
+-- vim.keymap.set({ 'n' }, "<leader>tg", function() M.toggle_terminal { title = "Lazygit", cmd = "lazygit" } end,
+--   { desc = "[T]oggle Lazy[G]it" })
+-- vim.keymap.set({ 'n' }, "<leader>txb",
+--   function() M.toggle_terminal { title = "xmake build results", cmd = "xmake build" } end,
+--   { desc = "[T]oggle Lazy[G]it" })
+-- vim.keymap.set({ 'n' }, "<leader>txr", function() M.toggle_terminal { title = "xmake run", cmd = "xmake run" } end,
+--   { desc = "[T]oggle Lazy[G]it" })
 
 return M

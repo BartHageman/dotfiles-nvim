@@ -4,14 +4,38 @@ local let = vim.g
 
 let.mapleader = ' '
 
--- Go to the first non-blank character of
--- EITHER
--- the starting line of the paragraph
--- OR
--- ending line of the paragraph
-map({ 'n', 'x' }, '<leader>{', '{j_', {}) -- Starting line
-map({ 'n', 'x' }, '<leader>}', '}k_', {}) -- Ending line
+-- Forward motion - goes to last non-blank line before next blank
+vim.keymap.set({ 'n', 'v', 'o' }, 'g}', function()
+  local current_col = vim.fn.col('.')
+  -- Find next blank line
+  vim.fn.search('^\\s*$', 'W')
+  -- Move up one to the last non-blank
+  if vim.fn.line('.') > 1 then
+    vim.cmd('normal! k')
+  end
+  vim.fn.cursor(vim.fn.line('.'), current_col)
+end)
 
+-- Backward motion - goes to first non-blank line after previous blank
+vim.keymap.set({ 'n', 'v', 'o' }, 'g{', function()
+  local current_col = vim.fn.col('.')
+  -- Find previous blank line
+  vim.fn.search('^\\s*$', 'bW')
+  -- Move down one to the first non-blank
+  if vim.fn.line('.') < vim.fn.line('$') then
+    vim.cmd('normal! j')
+  end
+  vim.fn.cursor(vim.fn.line('.'), current_col)
+end)
+
+-- map({ 'n', 'x' }, '<leader>{', '{j_', {}) -- Starting line
+-- map({ 'n', 'x' }, '<leader>}', '}k_', {}) -- Ending line a
+--
+--
+-- vim.keymap.set({ 'n', 'x', 'v' }, 'g}', move_to_last_non_blank_in_block,
+--   { desc = 'Move to last non-blank line in block' })
+-- vim.keymap.set({ 'n', 'x', 'v' }, 'g{', move_to_first_non_blank_in_block,
+--   { desc = 'Move to first non-blank line in block' })
 -- Easily void things you're visually pasting over
 map('x', '<leader>p', '"_dP', {})
 
@@ -51,6 +75,7 @@ map('n', '<leader>qc', ':copen<cr>')
 vim.keymap.set('n', '<leader>cd', '<CMD>cd %:p:h<CR><CMD>pwd<CR>',
   { desc = '[C]hange working [D]irectory to current file parent' })
 
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>sd', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
@@ -68,13 +93,15 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 --
 -- Code actions
 -- TODO: move this to lsp
-map("n", "<leader>ca", vim.lsp.buf.code_action)
-map("n", "<leader>gD", vim.lsp.buf.declaration)
-map("n", "<leader>gd", vim.lsp.buf.definition)
-map("n", "<leader>gi", vim.lsp.buf.implementation)
-map("n", "<leader>gr", vim.lsp.buf.references)
-map("n", "<leader>gf", vim.lsp.buf.format)
-map("n", "<leader>grn", vim.lsp.buf.rename)
+
+map("n", "ca", vim.lsp.buf.code_action)
+map("n", "gf", vim.lsp.buf.format)
+map("n", "grn", vim.lsp.buf.rename)
+
+map("n", "gD", ":lua vim.lsp.buf.declaration()<cr>zz")
+map("n", "gd", ":lua vim.lsp.buf.definition()<cr>zz")
+map("n", "gi", ":lua vim.lsp.buf.implementation()<cr>zz")
+map("n", "gr", ":lua vim.lsp.buf.references()<cr>zz")
 
 -- -- Easier terminal escape
 map("t", "<esc><esc>", '<C-\\><C-N>')
@@ -105,3 +132,22 @@ vim.keymap.set("n", "gxx", "\"zx\"zph")
 
 -- Ungoof myself if I type something I didn't mean to.
 vim.keymap.set("n", "q:", ":q")
+
+-- Toggle quickfix list function
+local function toggle_quickfix()
+  local qf_exists = false
+  for _, win in pairs(vim.fn.getwininfo()) do
+    if win["quickfix"] == 1 then
+      qf_exists = true
+    end
+  end
+  if qf_exists == true then
+    vim.cmd "cclose"
+    return
+  end
+  if not vim.tbl_isempty(vim.fn.getqflist()) then
+    vim.cmd "copen"
+  end
+end
+
+vim.keymap.set("n", "<leader>qf", toggle_quickfix)
