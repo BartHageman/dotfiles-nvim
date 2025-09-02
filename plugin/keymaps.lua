@@ -150,4 +150,4 @@ local function toggle_quickfix()
   end
 end
 
-vim.keymap.set("n", "<leader>qf", toggle_quickfix)
+vim.keymap.set("n", "tq", toggle_quickfix)
