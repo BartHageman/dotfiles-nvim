@@ -126,8 +126,8 @@ vim.keymap.set("n", "<leader>tf", require('custom.float_win').create_terminal)
 vim.keymap.set("n", "<C-w>s", "<C-w>s<C-w>j")
 vim.keymap.set("n", "<C-w>v", "<C-w>v<C-w>l")
 
--- Letter swap motion
-vim.keymap.set("n", "gxx", "\"zx\"zph")
+vim.keymap.set("n", "<leader>gxna", "gxiagxina")
+vim.keymap.set("n", "<leader>gxpa", "gxiagxila")
 
 
 -- Ungoof myself if I type something I didn't mean to.
