@@ -28,6 +28,7 @@ return {
     vim.keymap.set("n", "<space>sh", require('telescope.builtin').help_tags, { desc = "[S]earch [H]elp" })
     vim.keymap.set("n", "<space>s.", require('telescope.builtin').oldfiles, { desc = "[S]earch Oldfiles [.]" })
     vim.keymap.set("n", "<space>ss", require('telescope.builtin').symbols, { desc = "[S]earch [S]ymbols" })
+    vim.keymap.set("n", "<space>s/", require('telescope.builtin').current_buffer_fuzzy_find, { desc = "[S]earch Current Buffer Fuzzily" })
     vim.keymap.set("n", "<space>sn", function()
       require('telescope.builtin').find_files(
         {
