@@ -55,8 +55,8 @@ map('i', '!', '!<c-g>u')
 map('i', '.', '.<c-g>u')
 
 -- Move things around easily by holding alt
--- vmap('<M-j>', ":m '>+1<CR>gv=gv")
--- vmap('<M-k>', ":m '<-2<CR>gv=gv")
+vim.keymap.set('v', '<M-j>', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', '<M-k>', ":m '<-2<CR>gv=gv")
 -- imap('<M-j>', '<esc>:m .+1<CR>==')
 -- imap('<M-k>', '<esc>:m .-2<CR>==')
 -- nmap('<M-j>', ':m .+1<CR>==')
@@ -87,9 +87,6 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
 --vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
--- map("n", "<C-j>", ":cnext<cr>")
--- map("n", "<C-k>", ":cprev<cr>")
 --
 -- Code actions
 -- TODO: move this to lsp
@@ -151,3 +148,6 @@ local function toggle_quickfix()
 end
 
 vim.keymap.set("n", "tq", toggle_quickfix)
+vim.keymap.set("n", "<M-j>", ":cnext<cr>")
+vim.keymap.set("n", "<M-k>", ":cprev<cr>")
+
