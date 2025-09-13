@@ -33,12 +33,9 @@ return {
     "williamboman/mason.nvim",
     version = "^1.0.0",
     dependencies = {
-      "mfussenegger/nvim-dap",
-      "jay-babu/mason-nvim-dap.nvim",
     },
     config = function()
       require("mason").setup()
-      require("mason-nvim-dap").setup()
     end
   },
   {
@@ -52,6 +49,7 @@ return {
       require("mason-lspconfig").setup()
       setSigns()
       require("mason-lspconfig").setup_handlers {
+
         -- The first entry (without a key) will be the default handler
         -- and will be called for each installed server that doesn't have
         -- a dedicated handler.
@@ -59,13 +57,6 @@ return {
           local capabilities = require('blink.cmp').get_lsp_capabilities()
           require("lspconfig")[server_name].setup { capabilities = capabilities }
         end,
-        -- TODO: Custom setups for servers.
-        --
-        -- Next, you can provide a dedicated handler for specific servers.
-        -- For example, a handler override for the `rust_analyzer`:
-        -- ["rust_analyzer"] = function ()
-        --   require("rust-tools").setup {}
-        -- end
 
         vim.api.nvim_create_autocmd('LspAttach', {
           callback = function(args)

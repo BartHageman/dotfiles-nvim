@@ -36,8 +36,6 @@ end)
 --   { desc = 'Move to last non-blank line in block' })
 -- vim.keymap.set({ 'n', 'x', 'v' }, 'g{', move_to_first_non_blank_in_block,
 --   { desc = 'Move to first non-blank line in block' })
--- Easily void things you're visually pasting over
-map('x', '<leader>p', '"_dP', {})
 
 -- Keep screen centered when moving around
 map('n', 'n', 'nzz', {})
@@ -57,6 +55,8 @@ map('i', '.', '.<c-g>u')
 -- Move things around easily by holding alt
 vim.keymap.set('v', '<M-j>', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', '<M-k>', ":m '<-2<CR>gv=gv")
+vim.keymap.set('v', '<M-l>', ">gv")
+vim.keymap.set('v', '<M-h>', "<gv")
 -- imap('<M-j>', '<esc>:m .+1<CR>==')
 -- imap('<M-k>', '<esc>:m .-2<CR>==')
 -- nmap('<M-j>', ':m .+1<CR>==')
@@ -117,15 +117,9 @@ end)
 
 vim.keymap.set("n", "<leader>tf", require('custom.float_win').create_terminal)
 
-
-
 -- Always switch to newly created splits
 vim.keymap.set("n", "<C-w>s", "<C-w>s<C-w>j")
 vim.keymap.set("n", "<C-w>v", "<C-w>v<C-w>l")
-
-vim.keymap.set("n", "<leader>gxna", "gxiagxina")
-vim.keymap.set("n", "<leader>gxpa", "gxiagxila")
-
 
 -- Ungoof myself if I type something I didn't mean to.
 vim.keymap.set("n", "q:", ":q")
@@ -150,4 +144,3 @@ end
 vim.keymap.set("n", "tq", toggle_quickfix)
 vim.keymap.set("n", "<M-j>", ":cnext<cr>")
 vim.keymap.set("n", "<M-k>", ":cprev<cr>")
-

@@ -11,14 +11,14 @@ return {
   end,
   keys = {
     {
-      "<Leader>sp",
+      "<Leader>sps",
       function()
         local scratchpad = require("scratchpad")
         scratchpad.ui:new_scratchpad()
       end,
       desc = "show scratch pad",
 
-      vim.keymap.set({ "n", "v" }, "<leader>psp", function()
+      vim.keymap.set({ "n", "v" }, "<leader>spp", function()
         local scratchpad = require("scratchpad")
         scratchpad.ui:sync()
       end, { desc = "Push selection / current line to scratchpad" }),

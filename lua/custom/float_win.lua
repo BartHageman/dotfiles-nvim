@@ -117,6 +117,7 @@ M.toggle_terminal = function(config)
 end
 
 vim.api.nvim_create_user_command("FloatingTerminal", M.toggle_terminal, {})
+-- vim.api.nvim_create_user_command("FloatHelp", function() M.float_help({ title = "Help" }) end, {})
 vim.keymap.set({ 'n' }, "<leader>tt", M.toggle_terminal, { desc = "[T]oggle [T]erminal" })
 -- vim.keymap.set({ 'n' }, "<leader>tg", function() M.toggle_terminal { title = "Lazygit", cmd = "lazygit" } end,
 --   { desc = "[T]oggle Lazy[G]it" })
