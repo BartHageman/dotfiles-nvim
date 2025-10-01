@@ -55,7 +55,8 @@ return {
         -- a dedicated handler.
         function(server_name) -- default handler (optional)
           local capabilities = require('blink.cmp').get_lsp_capabilities()
-          require("lspconfig")[server_name].setup { capabilities = capabilities }
+          vim.lsp.config(tostring(server_name), { capabilities = capabilities })
+          vim.lsp.enable({tostring(server_name)})
         end,
 
         vim.api.nvim_create_autocmd('LspAttach', {
