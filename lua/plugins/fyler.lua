@@ -10,7 +10,7 @@ return {
       -- Window configuration
       win = {
         -- Window border style
-        border = "single",
+        border = "rounded",
         -- Default window kind
         kind = "float",
       },
