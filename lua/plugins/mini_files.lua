@@ -15,8 +15,15 @@ return {
           width_nofocus = 15,
           -- Width of preview window
           width_preview = 25,
-        } }
-      vim.keymap.set('n', '<leader>te', MiniFiles.open)
+        },
+        options = {
+          -- Whether to delete permanently or move into module-specific trash
+          permanent_delete = true,
+          -- Whether to use for editing directories
+          use_as_default_explorer = false,
+        },
+      }
+      --vim.keymap.set('n', '<leader>te', MiniFiles.open)
     end
   },
 }
