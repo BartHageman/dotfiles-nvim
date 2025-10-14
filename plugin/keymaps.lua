@@ -91,9 +91,9 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- Code actions
 -- TODO: move this to lsp
 
-map("n", "ca", vim.lsp.buf.code_action)
-map("n", "gf", vim.lsp.buf.format)
-map("n", "grn", vim.lsp.buf.rename)
+map("n", "<leader>lca", vim.lsp.buf.code_action)
+map("n", "<leader>lf", vim.lsp.buf.format)
+map("n", "<leader>rn", vim.lsp.buf.rename)
 
 map("n", "gD", ":lua vim.lsp.buf.declaration()<cr>zz")
 map("n", "gd", ":lua vim.lsp.buf.definition()<cr>zz")
@@ -120,9 +120,6 @@ vim.keymap.set("n", "<leader>tf", require('custom.float_win').create_terminal)
 -- Always switch to newly created splits
 vim.keymap.set("n", "<C-w>s", "<C-w>s<C-w>j")
 vim.keymap.set("n", "<C-w>v", "<C-w>v<C-w>l")
-
--- Ungoof myself if I type something I didn't mean to.
-vim.keymap.set("n", "q:", ":q")
 
 -- Toggle quickfix list function
 local function toggle_quickfix()

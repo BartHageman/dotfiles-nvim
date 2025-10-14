@@ -27,11 +27,10 @@ local function setSigns()
   })
 end
 
-
 return {
   {
     "williamboman/mason.nvim",
-    version = "^1.0.0",
+    -- version = "^1.0.0",
     dependencies = {
     },
     config = function()
@@ -39,55 +38,47 @@ return {
     end
   },
   {
-    "williamboman/mason-lspconfig.nvim",
-    version = "^1.0.0",
-  },
-  {
-    "neovim/nvim-lspconfig",
-    config = function()
-      -- LSP settings (for overriding per client)
-      require("mason-lspconfig").setup()
-      setSigns()
-      require("mason-lspconfig").setup_handlers {
-
-        -- The first entry (without a key) will be the default handler
-        -- and will be called for each installed server that doesn't have
-        -- a dedicated handler.
-        function(server_name) -- default handler (optional)
-          local capabilities = require('blink.cmp').get_lsp_capabilities()
-          require("lspconfig")[server_name].setup { capabilities = capabilities }
-        end,
-
-        vim.api.nvim_create_autocmd('LspAttach', {
-          callback = function(args)
-            local client = vim.lsp.get_client_by_id(args.data.client_id)
-            if not client then return end
-            setUpLSPKeybinds(args)
-            if client.supports_method('textDocument/formatting') then
-              -- Format the current buffer on save
-              vim.api.nvim_create_autocmd('BufWritePre', {
-                buffer = args.buf,
-                callback = function()
-                  vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
-                end,
-              })
-            end
-          end,
-        })
-      }
-    end,
+    "mason-org/mason-lspconfig.nvim",
+    opts = {},
     dependencies = {
+      { "mason-org/mason.nvim", opts = {} },
       {
-        "folke/lazydev.nvim",
-        ft = "lua", -- only load on lua files
-        opts = {
-          library = {
-            -- See the configuration section for more details
-            -- Load luvit types when the `vim.uv` word is found
-            { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        "neovim/nvim-lspconfig",
+        config = function()
+          -- LSP settings (for overriding per client)
+          setSigns()
+
+          vim.api.nvim_create_autocmd('LspAttach', {
+            callback = function(args)
+              local client = vim.lsp.get_client_by_id(args.data.client_id)
+              if not client then return end
+              setUpLSPKeybinds(args)
+              if client.supports_method('textDocument/formatting') then
+                -- Format the current buffer on save
+                vim.api.nvim_create_autocmd('BufWritePre', {
+                  buffer = args.buf,
+                  callback = function()
+                    vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
+                  end,
+                })
+              end
+            end,
+          })
+        end,
+        dependencies = {
+          {
+            "folke/lazydev.nvim",
+            ft = "lua",     -- only load on lua files
+            opts = {
+              library = {
+                -- See the configuration section for more details
+                -- Load luvit types when the `vim.uv` word is found
+                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+              },
+            },
           },
-        },
+        }
       },
-    }
-  }
+    },
+  },
 }
