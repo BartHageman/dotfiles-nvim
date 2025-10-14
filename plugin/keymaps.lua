@@ -4,6 +4,10 @@ local let = vim.g
 
 let.mapleader = ' '
 
+map('n', '<leader>y', '"+y', {})
+map('n', '<leader>p', '"+p', {})
+map('n', '<leader>P', '"+p', {})
+
 -- Forward motion - goes to last non-blank line before next blank
 vim.keymap.set({ 'n', 'v', 'o' }, 'g}', function()
   local current_col = vim.fn.col('.')
