@@ -1,7 +1,3 @@
-local id = vim.api.nvim_create_augroup("InsertRelative", {
-  clear = true
-})
-
 -- TODO: fix up buffers like telescope
 
 -- vim.api.nvim_create_autocmd({"InsertEnter"}, {
