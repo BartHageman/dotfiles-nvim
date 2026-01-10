@@ -68,14 +68,26 @@ return {
         dependencies = {
           {
             "folke/lazydev.nvim",
-            ft = "lua",     -- only load on lua files
+            ft = "lua", -- only load on lua files
             opts = {
               library = {
                 -- See the configuration section for more details
                 -- Load luvit types when the `vim.uv` word is found
-                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+                { path = "${3rd}/luv/library",        words = { "vim%.uv" } },
+                { path = "xmake-luals-addon/library", files = { "xmake.lua" } },
+                { path = "lua-ls-cc-tweaked/library", words = { "rednet%.", "turtle%.", "peripheral%.", "computercraft%." } },
               },
             },
+            dependencies = {
+              {
+                "nvim-computercraft/lua-ls-cc-tweaked",
+                lazy = true,
+              },
+              {
+                "LelouchHe/xmake-luals-addon",
+                lazy = true, -- don't load as a plugin
+              },
+            }
           },
         }
       },

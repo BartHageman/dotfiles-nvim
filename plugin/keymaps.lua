@@ -43,11 +43,11 @@ end)
 --   { desc = 'Move to first non-blank line in block' })
 
 -- Keep screen centered when moving around
-map('n', 'n', 'nzz', {})
-map('n', 'N', 'Nzz', {})
-map('n', '<C-d>', '<C-d>zz', {})
-map('n', '<C-u>', '<C-u>zz', {})
-map('n', 'N', 'Nzz', {})
+-- map('n', 'n', 'nzz', {})
+-- map('n', 'N', 'Nzz', {})
+-- map('n', '<C-d>', '<C-d>zz', {})
+-- map('n', '<C-u>', '<C-u>zz', {})
+-- map('n', 'N', 'Nzz', {})
 
 map('n', 'J', 'mzJ`z', {})
 
