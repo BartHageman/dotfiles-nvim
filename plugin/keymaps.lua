@@ -4,10 +4,10 @@ local let = vim.g
 
 let.mapleader = ' '
 
-map('n', '<leader>y', '"+y', {})
-map('n', '<leader>p', '"+p', {})
-map('n', '<leader>P', '"+p', {})
-map('n', '<leader>cm', ':!chmod +x %<cr>', {})
+map({'n', 'v'}, '<leader>y', '"+y', {})
+map({'n', 'v'}, '<leader>p', '"+p', {})
+map({'n', 'v'}, '<leader>P', '"+p', {})
+map({'n', 'v'}, '<leader>cm', ':!chmod +x %<cr>', {})
 
 -- Forward motion - goes to last non-blank line before next blank
 vim.keymap.set({ 'n', 'v', 'o' }, 'g}', function()
