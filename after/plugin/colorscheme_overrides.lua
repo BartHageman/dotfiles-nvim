@@ -1,5 +1,5 @@
 vim.cmd [[
-  colorscheme catppuccin-mocha
+  colorscheme nordic
 ]]
 -- vim.cmd [[
 --   hi EndOfBuffer guibg=#

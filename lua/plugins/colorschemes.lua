@@ -1,9 +1,12 @@
 ---@diagnostic disable: missing-fields
 return {
+
+  "neanias/everforest-nvim",
   {
     "rose-pine/neovim",
     name = "rose-pine"
   },
+  {'AlexvZyl/nordic.nvim'},
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
   {
     "sainnhe/gruvbox-material",
