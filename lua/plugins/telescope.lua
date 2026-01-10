@@ -22,12 +22,12 @@ return {
 
     vim.keymap.set("n", "<space>sk", require('telescope.builtin').keymaps, { desc = "[S]earch [K]eymaps" })
     vim.keymap.set("n", "<space>sf", require('telescope.builtin').find_files, { desc = "[S]earch [F]iles" })
+    vim.keymap.set("n", "<space>ff", require('telescope.builtin').git_files, { desc = "[S]earch [Git] [F]iles" })
     vim.keymap.set("n", "<space>sd", require('telescope.builtin').diagnostics, { desc = "[S]earch [D]iagnostics" })
     vim.keymap.set("n", "<space>sb", require('telescope.builtin').builtin, { desc = "[S]earch [F]iles" })
     vim.keymap.set("n", "<space>sc", require('telescope.builtin').colorscheme, { desc = "[S]earch [F]iles" })
     vim.keymap.set("n", "<space>sh", require('telescope.builtin').help_tags, { desc = "[S]earch [H]elp" })
     vim.keymap.set("n", "<space>s.", require('telescope.builtin').oldfiles, { desc = "[S]earch Oldfiles [.]" })
-    vim.keymap.set("n", "<space>ss", require('telescope.builtin').symbols, { desc = "[S]earch [S]ymbols" })
     vim.keymap.set("n", "<space>s/", require('telescope.builtin').current_buffer_fuzzy_find, { desc = "[S]earch Current Buffer Fuzzily" })
     vim.keymap.set("n", "<space>sn", function()
       require('telescope.builtin').find_files(
