@@ -1,5 +1,5 @@
 vim.cmd [[
-  colorscheme nordic
+  colorscheme everforest
 ]]
 -- vim.cmd [[
 --   hi EndOfBuffer guibg=#
