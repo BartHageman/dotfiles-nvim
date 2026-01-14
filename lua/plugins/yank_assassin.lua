@@ -3,8 +3,8 @@ return {
     event = "VeryLazy",
     config = function()
         require("YankAssassin").setup {
-            auto_normal = true, -- if true, autocmds are used. Whenever y is used in normal mode, the cursor doesn't move to start
-            auto_visual = true, -- if true, autocmds are used. Whenever y is used in visual mode, the cursor doesn't move to start
+            auto_normal = false, -- if true, autocmds are used. Whenever y is used in normal mode, the cursor doesn't move to start
+            auto_visual = false, -- if true, autocmds are used. Whenever y is used in visual mode, the cursor doesn't move to start
         }
         -- Optional Mappings
         vim.keymap.set({ "x", "n" }, "gy", "<Plug>(YADefault)", { silent = true })

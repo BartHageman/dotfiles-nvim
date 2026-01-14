@@ -4,9 +4,9 @@ local let = vim.g
 
 let.mapleader = ' '
 
-map({'n', 'v'}, '<leader>y', '"+y', {})
-map({'n', 'v'}, '<leader>p', '"+p', {})
-map({'n', 'v'}, '<leader>P', '"+p', {})
+-- map({'n', 'v'}, '<leader>y', '"+y', {})
+-- map({'n', 'v'}, '<leader>p', '"+p', {})
+-- map({'n', 'v'}, '<leader>P', '"+p', {})
 map({'n', 'v'}, '<leader>cm', ':!chmod +x %<cr>', {})
 
 -- Forward motion - goes to last non-blank line before next blank
