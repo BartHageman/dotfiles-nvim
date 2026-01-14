@@ -11,6 +11,7 @@ return {
   {
     "sainnhe/gruvbox-material",
   },
+ "nyoom-engineering/oxocarbon.nvim",
   -- {
   --   "neanias/everforest-nvim",
   --   version = false,
