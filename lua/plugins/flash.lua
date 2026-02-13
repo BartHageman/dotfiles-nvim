@@ -3,7 +3,16 @@ return {
   event = "VeryLazy",
   ---@type Flash.Config
   opts = {
-    modes = {search = {enabled = true}}
+    search = {
+      multi_window = false  
+    },
+    modes = {
+      char = {
+        highlight = { backdrop = false },
+      },
+      search = 
+      {enabled = true}
+    }
   },
   keys = {
     -- { "ss", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
