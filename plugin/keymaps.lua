@@ -146,3 +146,13 @@ end
 vim.keymap.set("n", "tq", toggle_quickfix)
 vim.keymap.set("n", "<M-j>", ":cnext<cr>")
 vim.keymap.set("n", "<M-k>", ":cprev<cr>")
+
+
+-- Any j/k movement larger than 1 is added to the jumplist
+vim.keymap.set({ "n", "x" }, "j", function()
+  return vim.v.count > 1 and "m'" .. vim.v.count .. "j" or "j"
+end, { noremap = true, expr = true })
+
+vim.keymap.set({ "n", "x" }, "k", function()
+  return vim.v.count > 1 and "m'" .. vim.v.count .. "k" or "k"
+end, { noremap = true, expr = true })
