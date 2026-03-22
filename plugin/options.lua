@@ -12,5 +12,8 @@ set.undofile = true
 set.wrap = false
 set.ignorecase = true
 set.smartcase = true
+set.foldmethod = "expr"
+set.foldexpr = "nvim_treesitter#foldexpr()"
+set.foldlevel = 99
 
 set.fillchars:append({ eob = "·" })
