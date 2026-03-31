@@ -6,7 +6,6 @@ return {
     require("fyler").setup({
       -- Replace netrw as default explorer
       default_explorer = true,
-
       -- Window configuration
       win = {
         -- Window border style
@@ -15,6 +14,6 @@ return {
         kind = "float",
       },
     })
-    vim.keymap.set("n", "<leader>te", ":Fyler<cr>", {desc="Open File Manager (Fyler)"})
+    vim.keymap.set("n", "<leader>te", function() require('fyler').toggle({ kind = "split_left_most" }) end, {desc="Open File Manager (Fyler)"})
   end
 }
