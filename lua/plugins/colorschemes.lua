@@ -2,6 +2,7 @@
 return {
 
   "neanias/everforest-nvim",
+  "jpwol/thorn.nvim",
   {
     "rose-pine/neovim",
     name = "rose-pine"
@@ -11,7 +12,7 @@ return {
   {
     "sainnhe/gruvbox-material",
   },
- "nyoom-engineering/oxocarbon.nvim",
+  {"nyoom-engineering/oxocarbon.nvim"},
   -- {
   --   "neanias/everforest-nvim",
   --   version = false,

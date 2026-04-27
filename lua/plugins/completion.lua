@@ -19,13 +19,21 @@ return {
           auto_show = true,
           auto_show_delay_ms = 200,
           window = {
-            border = "rounded",
+            border = "none",
             winhighlight = "Normal:BlinkCmpDoc,Normal:BlinkCmpDocBorder,CursorLine:BlinkCmpDocCursorLine,Search:None",
           },
         },
         menu = {
-          border = "rounded",
-          draw = { gap = 2 }
+          border = "none",
+          --draw = { gap = 2 }
+          draw = {
+            padding = { 0, 5 }, -- padding only on right side
+            components = {
+              kind_icon = {
+                text = function(ctx) return ' ' .. ctx.kind_icon .. ctx.icon_gap .. ' ' end
+              }
+            }
+          }
         }
       },
       appearance = {
