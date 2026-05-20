@@ -11,7 +11,9 @@ return {
         if ok and stats and stats.size > max_filesize then return end
 
         local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype)
-        if lang and not vim.tbl_contains(require("nvim-treesitter.config").get_installed(), lang) then
+        if not lang or not require("nvim-treesitter.parsers")[lang] then return end
+
+        if not vim.tbl_contains(require("nvim-treesitter.config").get_installed(), lang) then
           require("nvim-treesitter").install({ lang }):await(function()
             vim.schedule(function()
               if vim.api.nvim_buf_is_valid(args.buf) then

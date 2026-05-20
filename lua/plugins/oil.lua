@@ -5,6 +5,9 @@ return {
   opts = {
     default_file_explorer = true,
     view_options = { show_hidden = true },
+    keymaps = {
+      ["q"] = "actions.close",
+    },
     float = {
       padding = 4,
       border = "rounded",
