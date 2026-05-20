@@ -14,7 +14,23 @@ set.wrap = false
 set.ignorecase = true
 set.smartcase = true
 set.foldmethod = "expr"
-set.foldexpr = "nvim_treesitter#foldexpr()"
+set.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+set.foldtext = ""
 set.foldlevel = 99
+set.foldlevelstart = 99
+set.foldenable = true
 
-set.fillchars:append({ eob = "·" })
+set.fillchars:append({
+  eob = "·",
+  fold = " ",
+  foldopen = "",
+  foldsep = " ",
+  foldclose = "",
+})
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = function()
+    vim.api.nvim_set_hl(0, "Folded", { bg = "NONE" })
+  end,
+})
+vim.api.nvim_set_hl(0, "Folded", { bg = "NONE" })
