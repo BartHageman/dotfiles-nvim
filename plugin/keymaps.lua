@@ -75,7 +75,7 @@ map('v', '>', '>gv')
 map('n', '[q', '<cmd>cp<cr>', { desc = "Previous [Q]uickfix list item" })
 map('n', ']q', '<cmd>cn<cr>', { desc = "Next [Q]uickfix list item" })
 map('n', '<leader>qo', ':copen<cr>')
-map('n', '<leader>qc', ':copen<cr>')
+map('n', '<leader>qc', ':cclose<cr>')
 
 vim.keymap.set('n', '<leader>cd', '<CMD>cd %:p:h<CR><CMD>pwd<CR>',
   { desc = '[C]hange working [D]irectory to current file parent' })

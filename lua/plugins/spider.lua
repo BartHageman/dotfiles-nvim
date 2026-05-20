@@ -1,7 +1,7 @@
 return {
   "chrisgrieser/nvim-spider",
   lazy = true,
-  opt = {
+  opts = {
     skipInsignificantPunctuation = false,
     consistentOperatorPending = false, -- see the README for details
     subwordMovement = true,

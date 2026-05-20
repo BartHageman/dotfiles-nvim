@@ -1,7 +1,7 @@
 -- plugins/telescope.lua:
 return {
   'nvim-telescope/telescope.nvim',
-  tag = '0.1.8',
+  tag = 'v0.2.2',
   config = function()
     require('telescope').setup {
       defaults = {
@@ -24,8 +24,8 @@ return {
     vim.keymap.set("n", "<space>sf", require('telescope.builtin').find_files, { desc = "[S]earch [F]iles" })
     vim.keymap.set("n", "<space>ff", require('telescope.builtin').git_files, { desc = "[S]earch [Git] [F]iles" })
     vim.keymap.set("n", "<space>sd", require('telescope.builtin').diagnostics, { desc = "[S]earch [D]iagnostics" })
-    vim.keymap.set("n", "<space>sb", require('telescope.builtin').builtin, { desc = "[S]earch [F]iles" })
-    vim.keymap.set("n", "<space>sc", require('telescope.builtin').colorscheme, { desc = "[S]earch [F]iles" })
+    vim.keymap.set("n", "<space>sb", require('telescope.builtin').builtin, { desc = "[S]earch [B]uiltins" })
+    vim.keymap.set("n", "<space>sc", require('telescope.builtin').colorscheme, { desc = "[S]earch [C]olorscheme" })
     vim.keymap.set("n", "<space>sh", require('telescope.builtin').help_tags, { desc = "[S]earch [H]elp" })
     vim.keymap.set("n", "<space>s.", require('telescope.builtin').oldfiles, { desc = "[S]earch Oldfiles [.]" })
     vim.keymap.set("n", "<space>ss", require('telescope.builtin').lsp_document_symbols,
