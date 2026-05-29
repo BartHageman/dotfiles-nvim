@@ -12,6 +12,7 @@ return {
     notifier = { enabled = true },
     scratch = { enabled = true },
     input = { enabled = true },
+    picker = { enabled = true, ui_select = true },
     statuscolumn = {
       enabled = true,
       folds = { open = true, git_hl = false },
