@@ -6,7 +6,7 @@ return {
     indent = {
       enabled = true,
       animate = { enabled = false },
-      indent = { hl = "BlinkCmpDefault" },
+      indent = { hl = "BlinkCmpGhostText" },
       scope = { enabled = true },
     },
     notifier = { enabled = true },

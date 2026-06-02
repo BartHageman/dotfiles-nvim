@@ -3,6 +3,7 @@ return {
 
   "neanias/everforest-nvim",
   "jpwol/thorn.nvim",
+  "EdenEast/nightfox.nvim",
   {
     "rose-pine/neovim",
     name = "rose-pine"

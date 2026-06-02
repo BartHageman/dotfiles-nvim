@@ -1,5 +1,5 @@
 vim.cmd [[
-  colorscheme rose-pine-moon
+  colorscheme duskfox
 ]]
 vim.api.nvim_set_hl(0, "FoldColumn", {link="Comment"})
 -- vim.cmd [[
