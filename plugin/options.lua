@@ -1,12 +1,16 @@
 local set = vim.opt
 
-set.shiftwidth = 4
-set.tabstop = 4
+set.shiftwidth = 2
+set.tabstop = 2
 set.expandtab = true
 set.number = true
 set.relativenumber = true
 set.laststatus = 3
-set.clipboard = { "unnamedplus" } --slow? why?
+vim.g.clipboard = require("clipboard")
+vim.api.nvim_create_autocmd("UIEnter", {
+  once = true,
+  callback = function() vim.opt.clipboard = { "unnamedplus" } end,
+})
 set.scrolloff = 99
 vim.opt.undofile = true
 vim.opt.swapfile = false

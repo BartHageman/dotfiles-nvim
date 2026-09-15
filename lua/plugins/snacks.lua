@@ -7,7 +7,7 @@ return {
       enabled = true,
       animate = { enabled = false },
       indent = { hl = "BlinkCmpGhostText" },
-      scope = { enabled = true },
+      scope = { enabled = true, hl = "@keyword" },
     },
     notifier = { enabled = true },
     scratch = { enabled = true },

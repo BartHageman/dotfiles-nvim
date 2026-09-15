@@ -37,8 +37,6 @@ return {
             teach_bubble        = { callback = require("nvim-teach.tools.teach_bubble"),     description = "Place an annotation bubble at a code location" },
             teach_highlight     = { callback = require("nvim-teach.tools.teach_highlight"),  description = "Highlight a range of code" },
             teach_tour          = { callback = require("nvim-teach.tools.teach_tour"),       description = "Run a multi-step teaching tour" },
-            teach_ask           = { callback = require("nvim-teach.tools.teach_ask"),        description = "Ask the user a question via a bubble" },
-            teach_wait_reply    = { callback = require("nvim-teach.tools.teach_wait_reply"), description = "Wait for the user to reply to a bubble" },
             teach_clear         = { callback = require("nvim-teach.tools.teach_clear"),      description = "Clear bubbles and highlights" },
             teach_get_selection = { callback = require("nvim-teach.tools.teach_get_selection"), description = "Get the user's current selection" },
           },

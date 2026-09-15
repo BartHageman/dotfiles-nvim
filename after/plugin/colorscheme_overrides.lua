@@ -1,7 +1,8 @@
 vim.cmd [[
-  colorscheme duskfox
+  colorscheme rwth
 ]]
 vim.api.nvim_set_hl(0, "FoldColumn", {link="Comment"})
+vim.api.nvim_set_hl(0, "String", {link="Added"})
 -- vim.cmd [[
 --   hi EndOfBuffer guibg=#
 local function swap_fg_bg(groups)

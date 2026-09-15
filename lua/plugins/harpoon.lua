@@ -1,4 +1,5 @@
 local active_flash = nil
+
 local function flash_filename()
   -- kill previous flash immediately
   if active_flash and vim.api.nvim_win_is_valid(active_flash.win) then
@@ -62,11 +63,7 @@ return {
     config = function()
       local harpoon = require("harpoon")
 
-
-
-      -- REQUIRED
       harpoon:setup()
-      -- REQUIRED
 
       vim.keymap.set("n", "<leader>mm", function() harpoon:list():add() end)
       vim.keymap.set("n", "<leader>ml", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
@@ -75,11 +72,6 @@ return {
       vim.keymap.set("n", "<C-j>", function() harpoon_select_n_flash(2) end)
       vim.keymap.set("n", "<C-k>", function() harpoon_select_n_flash(3) end)
       vim.keymap.set("n", "<C-l>", function() harpoon_select_n_flash(4) end)
-
-      -- vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end)
-      -- vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end)
-      -- vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end)
-      -- vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end)
     end
   }
 }

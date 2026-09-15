@@ -156,3 +156,20 @@ end, { noremap = true, expr = true })
 vim.keymap.set({ "n", "x" }, "k", function()
   return vim.v.count > 1 and "m'" .. vim.v.count .. "k" or "k"
 end, { noremap = true, expr = true })
+
+
+vim.keymap.set({ 'n', 't' }, "<leader>rm",  ":make<cr>", {desc = "[R]un [M]ake"})
+
+-- Treesitter incremental selection.
+-- Core (nvim 0.12) bound parent/child to `an`/`in`, but those collide with
+-- mini.ai's around_next/inside_next prefixes. Drop the core bindings and
+-- expose expand/shrink as <Tab>/<S-Tab> in visual mode. `]n`/`[n` (next/prev
+-- sibling) don't conflict with mini.ai and are left as core defaults.
+pcall(vim.keymap.del, { "x", "o" }, "an")
+pcall(vim.keymap.del, { "x", "o" }, "in")
+vim.keymap.set("x", "<Tab>", function()
+  require("vim.treesitter._select").select_parent(vim.v.count1)
+end, { desc = "TS: expand selection to parent node" })
+vim.keymap.set("x", "<S-Tab>", function()
+  require("vim.treesitter._select").select_child(vim.v.count1)
+end, { desc = "TS: shrink selection to child node" })

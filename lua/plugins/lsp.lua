@@ -54,11 +54,16 @@ return {
               if not client then return end
               setUpLSPKeybinds(args)
               if client.supports_method('textDocument/formatting') then
-                -- Format the current buffer on save
+                -- Format on save, with a hard timeout so a slow/hung LSP
+                -- can't lock up the UI (was needing Ctrl+C to escape).
                 vim.api.nvim_create_autocmd('BufWritePre', {
                   buffer = args.buf,
                   callback = function()
-                    vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
+                    vim.lsp.buf.format({
+                      bufnr = args.buf,
+                      id = client.id,
+                      timeout_ms = 1500,
+                    })
                   end,
                 })
               end

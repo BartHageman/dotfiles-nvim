@@ -45,6 +45,13 @@ return {
 
       sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer' },
+        providers = {
+          snippets = {
+            opts = {
+              disabled = { '$CLIPBOARD', '$TM_SELECTED_TEXT', '$TM_CURRENT_LINE' },
+            }
+          }
+        }
       },
     },
     opts_extend = { "sources.default" }
