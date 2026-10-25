@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd("UIEnter", {
   once = true,
   callback = function() vim.opt.clipboard = { "unnamedplus" } end,
 })
-set.scrolloff = 99
+set.scrolloff = 0
 vim.opt.undofile = true
 vim.opt.swapfile = false
 set.wrap = false
