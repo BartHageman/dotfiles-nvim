@@ -34,13 +34,20 @@ return {
       { desc = "[S]earch [W]orkspace Symbols" })
     vim.keymap.set("n", "<space>s/", require('telescope.builtin').current_buffer_fuzzy_find,
       { desc = "[S]earch Current Buffer Fuzzily" })
-    vim.keymap.set("n", "<space>sn", function()
+    vim.keymap.set("n", "<space>snx", function()
+      require('telescope.builtin').find_files(
+        {
+          cwd = "~/.config/nixos/"
+        }
+      )
+    end, { desc = "[S]earch [N]i[x]OS Config" })
+    vim.keymap.set("n", "<space>snv", function()
       require('telescope.builtin').find_files(
         {
           cwd = vim.fn.stdpath("config")
         }
       )
-    end, { desc = "[S]earch [N]eovim Config" })
+    end, { desc = "[S]earch [N]eo[v]im Config" })
 
     -- Search My Plugins
     vim.keymap.set("n", "<space>smp", function()
