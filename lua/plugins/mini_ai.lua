@@ -7,7 +7,6 @@ return {
     },
     config = function()
       local ai = require('mini.ai')
-
       ai.setup {
         mappings = {
           -- Around previous, not last!
